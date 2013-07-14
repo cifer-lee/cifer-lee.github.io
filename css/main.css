@@ -25,7 +25,7 @@ h1, h2, h3, h4, h5, h6 {
 h1 { margin-bottom: 1em; }
 p { margin: 1em 0; }
 
-a         { color: #00a; }
+a         { color: #00a; text-decoration: none;}
 a:hover   { color: #000; }
 a:visited { color: #a0a; }
 
@@ -39,6 +39,10 @@ table {
 /* Home
 /*
 /*****************************************************************************/
+#home {
+  float: left; 
+}
+
 ul.posts {
   list-style-type: none;
   margin-bottom: 2em;
@@ -63,7 +67,7 @@ ul.posts span {
 .site {
   font-size: 115%;
   text-align: justify;
-  width: 42em;
+  width: 57em;
   margin: 3em auto 2em;
   line-height: 1.5em;
 }
@@ -131,6 +135,10 @@ ul.posts span {
 /* Posts
 /*
 /*****************************************************************************/
+.post {
+  float: left;
+  width: 70%;
+}
 
 /* standard */
 .post pre {
@@ -162,4 +170,19 @@ ul.posts span {
 
 .post pre.terminal code {
   background-color: #333;
+}
+
+.tags {
+  float: right;
+  width: 24%;
+}
+
+.tags a {
+  margin: 4px 0;
+  padding: 4px;
+  display: inline-block;
+}
+
+.clear {
+  clear: both;
 }

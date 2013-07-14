@@ -19,23 +19,36 @@
           <div class="site">
             <div class="header">
               <h1 class="title"><a href="/">{{ site.name }}</a></h1>
-              <a class="extra" href="/">home</a>
+              <a class="extra" href="/">Home</a>
+              {% for post in site.posts %}
+                {% if post.title == 'About This Blog' %}
+                <a class="extra" href="{{ post.url }}">{{ post.title }}</a></li>
+                {% endif %}
+              {% endfor %}
             </div>
 
                 {{ content }}
 
+            <div class="tags">
+              <h1>Tags</h1>
+              {% for tag in site.tags %}
+                <a style="font-size: {{ tag | last | size | times: 100 | divided_by: site.tags.size | plus: 80 }}%;" href="/tagposts.html" title="">{{ tag| first }}</a>
+              {% endfor %}
+            </div>
+
+            <div class="clear"></div>
+
             <div class="footer">
               <div class="contact">
                 <p>
-                  Your Name<br />
-                  What You Are<br />
-                  your@email.com
+                  Cifer Lee<br />
+                  mantianyu#gmail.com
                 </p>
               </div>
               <div class="contact">
                 <p>
-                  <a href="http://github.com/yourusername/">github.com/yourusername</a><br />
-                  <a href="http://twitter.com/yourusername/">twitter.com/yourusername</a><br />
+                  <a href="http://github.com/cifer-lee/">github.com/cifer-lee</a><br />
+                  <a href="http://twitter.com//">twitter.com/CiferLee</a><br />
                 </p>
               </div>
             </div>

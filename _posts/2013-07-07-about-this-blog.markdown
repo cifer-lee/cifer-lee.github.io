@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "关于这个博客"
-date: 2013-07-07
+title: "About This Blog"
+date: 2013-07-07 21:47
 ---
 
 我听说写博客有四个级别：
