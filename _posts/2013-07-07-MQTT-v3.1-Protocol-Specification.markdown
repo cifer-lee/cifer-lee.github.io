@@ -24,15 +24,23 @@ date: 2013-07-07
 
 ### 标识
 
+#### RETAIN
+这个标识仅用在PUBLISH消息中。
+被保留的(Retained)消息应该在服务器重启后仍然能够获得。
+
+
 ### 剩余长度
 
 剩余长度不是变长头部的一部分。
 
 ## 2.2. 变长头
 
-在`剩余长度`额外1～3个字节不会计入剩余长度的值，就是说，剩余长度的值所表示的仅仅是变长头和实际数据的长度。
+有几种类型的消息包含一个变长头，变长头位于固定头和payload之间。
+
+上面所说的剩余长度的变长部分并不属于变长头（译注：这个地方值得注意一下）。而且，剩余长度（Remaining Length）这个field的值并不包含这个field本身所占用的字节数，它只是指明了变长头和payload所占用的字节数。
 
 ### 协议名称
+
 
 ### 协议版本
 
@@ -40,4 +48,55 @@ date: 2013-07-07
 
 #### 清除会话标识
 
-####
+#### 期望标识
+
+Will消息表明了，当与客户端通信时服务器遇到了I/O错误，或者客户端与Keep Alive timer schedule的通信失败时，服务器可以代表客户端发送消息。
+
+当Will标识置1时，Will Qos和Will Retain必须出现在Connect消息的标识字节中，Will Topic和Will Message必须出现在payload中。
+
+#### 期望Qos标识
+
+#### 希望保留标识
+
+#### 用户名和密码标识
+
+### Keep Alive timer
+
+Keep Alive timer 存在于CONNECT消息的变长头中。
+
+Keep Alive timer，以秒为单位，定义了服务器接收到客户端的消息的最大间隔时间。它使得服务器能够检测到与客户端的连接的断开，而不用去等待长长的TCP超时时间。客户端具有在Keep Alive time周期内发送消息的责任。如果客户端在Keep Alive time周期内没有足够的数据来发送，那么客户端可以发送一个PINGREG消息，服务器会返回一个PINGRESP消息。
+
+如果服务器在一个半的Keep Alive time周期内都没有收到客户端的消息（客户端拥有半个周期的“再生“期），那么他会断开与客户端的连接，就好像客户端发送了一个DISCONNECT消息。
+
+如果客户端没有收到PINGRESP消息，那么他应该主动断开与服务器的连接。
+
+### Connect返回码
+
+返回码在CONNACK消息的变长头中被发送。
+
+### Topic name
+
+
+## Payload
+
+下面的几种MQTT消息具有payload：
+
+### CONNECT
+
+这个payload里包含着一个或多个UTF-8编码的字符串。它们指明了一个客户端的唯一标识，一个期望的topic还有用户名和密码。除了第一个，其他都是可选的，取决于变长头的字段。
+
+
+### SUBSCRIBE
+
+### SUBACK
+
+### PUBLISH
+
+
+## Message identifiers
+
+消息的标识存在于以下这些消息的变长头中：PUBLISH, PUBACK, PUBREC, PUBREL, PUBCOMP, SUBSCRIBE, SUBACK, UNSUBSCRIBE, UNSUBACK。
+
+## MQTT 和 UTF-8
+
+## 未使用的位
