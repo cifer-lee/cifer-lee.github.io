@@ -3,13 +3,33 @@ layout: default
 title: cifer.sanctuary
 ---
 
+<!-- This loops through the paginated posts -->
 <div id="home">
-  <h1>Blog Posts</h1>
-  <ul class="posts">
-    {% for post in site.posts %}
-        {% if post.category != 'todo-list' %}
-      <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
+    <div>
+        <h1>Blog Posts</h1>
+        <ul class="posts">
+            {% for post in paginator.posts %}
+            <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Pagination links -->
+    <div class="pagination">
+        {% if paginator.previous_page %}
+            {% if paginator.previous_page == 1 %}
+                <a href="/">Previous</a>
+            {% else %}
+                <a href="/page{{ paginator.previous_page }}" class="previous">Previous</a>
+            {% endif %}
+        {% else %}
+        <span class="previous">Previous</span>
         {% endif %}
-    {% endfor %}
-  </ul>
+        <span class="page_number ">Page: {{ paginator.page }} of {{ paginator.total_pages }}</span>
+        {% if paginator.next_page %}
+        <a href="/page{{ paginator.next_page }}" class="next">Next</a>
+        {% else %}
+        <span class="next ">Next</span>
+        {% endif %}
+    </div>
 </div>

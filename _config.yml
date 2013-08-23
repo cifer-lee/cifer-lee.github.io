@@ -1,3 +1,6 @@
 name: cifer.sanctuary
 tagname: 
 pygments: true
+
+paginate: 15 
+#paginate_path: "/page:num"
