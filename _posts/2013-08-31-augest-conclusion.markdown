@@ -29,6 +29,8 @@ date: 2013-08-31
 
 * 学习了bash shell
 
+* 学习了google maps api
+
 
 还有，以下是这个月所遇到的问题和解决方法，以及一些小tips
 
