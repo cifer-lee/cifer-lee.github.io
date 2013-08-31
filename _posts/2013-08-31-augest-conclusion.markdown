@@ -33,7 +33,7 @@ date: 2013-08-31
 还有，以下是这个月所遇到的问题和解决方法，以及一些小tips
 
 * javascript中，判断一个变量是否为数字/整数
-
+```
     function isNumeric(testValue) {
         return !isNaN(parseFloat(testValue)) && isFinite(testValue);
     }
@@ -41,7 +41,7 @@ date: 2013-08-31
     function isInteger(testValue) {
         return !isNaN(parseInteger(testValue)) && isFinite(testValue);
     }
-    
+```
 * redis 也是单线程的
 
 * date --set=STRING 用来设置日期， STRING可以是"next day"这样的humanble的形式
