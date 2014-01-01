@@ -1,8 +1,5 @@
 ---
-published: true
----
-
----
+layout: post
 title: 关于 vpn 的一切
 date: 2014-01-01 19:37
 ---
