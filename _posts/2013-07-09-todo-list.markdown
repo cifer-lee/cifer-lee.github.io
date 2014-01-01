@@ -1,9 +1,0 @@
----
-layout: post
-title: "2013-07-09 todo list"
-date: 2013-07-09
-category: todo-list
----
-
-1. Yeelink平台设备触发器机制研究，微薄研究
-2. node.js

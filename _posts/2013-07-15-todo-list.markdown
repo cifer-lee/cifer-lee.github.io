@@ -1,9 +1,0 @@
----
-layout: post
-title: "2013-07-15 todo list"
-date: 2013-07-15
-category: todo-list
----
-
-1. 买火车票
-2. 续借图书

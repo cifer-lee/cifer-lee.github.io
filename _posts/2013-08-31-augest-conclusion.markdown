@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "八月总结"
+published: false
 date: 2013-08-31
 ---
 
