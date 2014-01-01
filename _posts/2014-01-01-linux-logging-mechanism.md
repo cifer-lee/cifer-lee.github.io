@@ -3,6 +3,7 @@ published: true
 ---
 
 ---
+layout: post
 title: linux 日志流
 date: 2014-01-01 19:20
 ---
