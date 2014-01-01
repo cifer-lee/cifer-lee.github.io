@@ -5,6 +5,7 @@ published: true
 ---
 layout: post
 title: linux 日志流
+published: true
 date: 2014-01-01 19:20
 ---
 
