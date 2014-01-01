@@ -1,35 +1,39 @@
 ---
 layout: default
-title: cifer.sanctuary
+title: CIFER.SANCTUARY
 ---
 
 <!-- This loops through the paginated posts -->
-<div id="home">
+<div>
     <div>
-        <h1>Blog Posts</h1>
-        <ul class="posts">
+        <dl>
             {% for post in paginator.posts %}
-            <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
+            <dt>
+            <h2><a href="{{ post.url }}">{{ post.title }}</a>
+                <span class="pull-right"><small>{{ post.date | date_to_string }}</small></span>
+            </h2>
+            </dt>
+            <dd>{{ post.content }}</dd>
+            <hr>
             {% endfor %}
-        </ul>
+        </dl>
     </div>
 
     <!-- Pagination links -->
-    <div class="pagination">
+    <div>
+        <ul class="pager">
         {% if paginator.previous_page %}
-            {% if paginator.previous_page == 1 %}
-                <a href="/">Previous</a>
-            {% else %}
-                <a href="/page{{ paginator.previous_page }}" class="previous">Previous</a>
-            {% endif %}
+        {% if paginator.previous_page == 1 %}
+        <li class="previous"><a href="/">&larr; Newer</a></li>
         {% else %}
-        <span class="previous">Previous</span>
+        <li class="previous"><a href="/page{{ paginator.previous_page }}" class="previous">&larr; Newer</a></li>
         {% endif %}
-        <span class="page_number ">Page: {{ paginator.page }} of {{ paginator.total_pages }}</span>
+        {% endif %}
+        <!--<span class="page_number ">Page: {{ paginator.page }} of {{ paginator.total_pages }}</span>-->
         {% if paginator.next_page %}
-        <a href="/page{{ paginator.next_page }}" class="next">Next</a>
-        {% else %}
-        <span class="next ">Next</span>
+        <li class="next"><a href="/page{{ paginator.next_page }}" class="next">Earlier &rarr;</a></li>
         {% endif %}
+    </ul>
     </div>
+
 </div>

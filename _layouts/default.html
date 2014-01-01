@@ -8,6 +8,8 @@
 
         <!-- syntax highlighting CSS -->
         <link rel="stylesheet" href="/css/syntax.css">
+        <!-- bootstrap CSS -->
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
 
         <!-- Custom CSS -->
         <link rel="stylesheet" href="/css/main.css">
@@ -15,45 +17,32 @@
     </head>
     <body>
 
-        <div class="container">
-          <div class="site">
-            <div class="header">
-              <h1 class="title"><a href="/">{{ site.name }}</a></h1>
-              <a class="extra" href="/">Home</a>
-              {% for post in site.posts %}
-                {% if post.title == 'About This Blog' %}
-                <a class="extra" href="{{ post.url }}">{{ post.title }}</a></li>
-                {% endif %}
-              {% endfor %}
+        <div class="container" style="width: 100%">
+                <div class="row">
+                    <div class="col-lg-3 text-center left-col" style="background: #555;">
+                        <h2><a href="/">{{ site.name }}</a></h2>
+                        <img style="margin-top: 5em;" src="http://www.gravatar.com/avatar/85b891217ec228df7ffa1d5ec9896bb7?s=160" class="img-circle">
+                        <div style="margin: 1em 0;">
+                            <a href="https://twitter.com/mantianyu" target="_blank"><img src="/img/twitter.svg" class="img-circle"></a>
+                            <a href="https://plus.google.com/109146976390280233432/posts" target="_blank"><img src="/img/google_follow.svg" class="img-circle"></a>
+                        </div>
+                        <h4><a href="/">HOME</a></h4>
+                        <h4><a href="/about">ABOUT</a></h4>
+                        <h4><a href="/tags">TAGS</a></h4>
+                    </div>
+                    <div class="col-lg-9 right-col">
+
+                    {{ content }}
+
+                    <div class="footer">
+                        <div class="contact">
+                        </div>
+                    </div>
+                </div>
             </div>
-
-                {{ content }}
-
-            <div class="tags">
-              <h1>Tags</h1>
-              {% for tag in site.tags %}
-                <a style="font-size: {{ tag | last | size | times: 100 | divided_by: site.tags.size | plus: 80 }}%;" href="/tagposts.html" title="">{{ tag| first }}</a>
-              {% endfor %}
-            </div>
-
-            <div class="clear"></div>
-
-            <div class="footer">
-              <div class="contact">
-                <p>
-                  Cifer Lee<br />
-                  mantianyu#gmail.com
-                </p>
-              </div>
-              <div class="contact">
-                <p>
-                  <a href="http://github.com/cifer-lee/">github.com/cifer-lee</a><br />
-                  <a href="http://twitter.com//">twitter.com/CiferLee</a><br />
-                </p>
-              </div>
-            </div>
-          </div>
         </div> <!-- /container -->
 
+        <script src="/js/jquery-2.0.3.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
     </body>
 </html>
