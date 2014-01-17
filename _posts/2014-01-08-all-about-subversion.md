@@ -76,6 +76,11 @@ Most projects have a recognizable “main line”, or trunk, of development; som
 >
 >   As you can see, svnadmin setuuid has no output upon success.
 
+#### 查看仓库结构
+
+    $ svnlook tree      # 可以查看递归创建的 svn 仓库的结构
+    $ svnlook -N tree   # 可以非递归的查看 svn 仓库结构
+
 #### 升级你的仓库
 
     svnadmin upgrade REPOS_PATH - Upgrade a repository to the latest supported schema version.
@@ -105,3 +110,50 @@ Most projects have a recognizable “main line”, or trunk, of development; som
     $ svnserve -d -r /srv/svn
 
 这样, 客户端就可以通过 svn://your-host-address/project1 来访问了
+
+#### 停止 svnserve 服务器
+
+很不幸, svnserve 命令并没有提供一种"优雅"的方式来终止 svnserve daemon, "优雅"的方式就是 kill -9 or kill -KILL
+
+### 往仓库里导入文件
+
+很多情况下, 在建立仓库之前我们已经事先有了一堆文件了, 那么建立仓库之后我们可以使用 `svn import` 命令来将已有的那堆文件纳入仓库中. 像这样:
+
+    $ svn import project1_dir/ svn://localhost/project1/trunk
+
+仓库中的父级目录会自动创建, 如果我们的项目下有多个子项目, 那么我们的 import 命令可能是这样的:
+
+    $ svn import project1_dir/sub1 svn://localhost/project1/sub1/trunk
+    $ svn import project1_dir/sub2 svn://localhost/project1/sub2/trunk
+
+### 附: 我创建 svn 仓库的规则, 以及一般过程
+
+1.  所有的仓库都放在 /srv/svn-repos 目录下
+2.  每个项目单独建立一个目录, 比如 /srv/svn-repos/project1
+3.  如果项目可分为几个子项目, 不必为子项目建立单独的目录, 而是把子项目的目录树也交给 svn 管理, 比如, 我们不必如此: /srv/svn-repos/project1/subproject1
+4.  如果项目肯分为几个子项目, 每个子项目下要至少创建 trunk, tags, branches 这几个分支, 当然这些分支目录也不需要我们创建, 把他们也交给 svn 管理; 如果项目不必分为子项目, 那么直接在项目下创建上述几个分支
+5.  svnserve 的根路径设为 /srv/svn-repos, 或者 /srv/svn-repos/project1, 但是不要使用默认的 "/" 路径
+
+
+#### 创建 svn 仓库的一般过程
+
+*   创建项目目录
+
+        # mkdir /srv/svn-repos/project2
+
+*   建立 svn 目录结构
+
+        # svnadmin create /srv/svn-repos/project1
+
+*   运行 svnserve 服务
+
+        # svnserve -d -r /srv/svn-repos
+
+*   配置
+
+        # anon-access = read
+        # auth-access = write
+        # password-db = passwd
+        前的注释和空格, 并在 conf/passwd 文件 [users] 节下添加一行
+        cifer = {password}
+
