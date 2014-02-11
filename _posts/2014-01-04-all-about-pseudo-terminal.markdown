@@ -8,7 +8,5 @@ published: false
 ### 参考资源:
 
 1.  `man pty` and `man pts`
-2.  [http://tldp.org/HOWTO/Text-Terminal-HOWTO-7.html#ss7.3]
+2.  [http://tldp.org/HOWTO/Text-Terminal-HOWTO-7.html#ss7.3](http://tldp.org/HOWTO/Text-Terminal-HOWTO-7.html#ss7.3)
 3.  _Essential System Administration, Chapter 12 - Serial Lines and Devices_
-
-[http://tldp.org/HOWTO/Text-Terminal-HOWTO-7.html#ss7.3](http://tldp.org/HOWTO/Text-Terminal-HOWTO-7.html#ss7.3) 
