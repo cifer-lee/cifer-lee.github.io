@@ -90,6 +90,10 @@ Ghostscript 既然是个言语解释器, 自然也能被用于平常的编程开
 
 >   All important desktop applications (GTK/GNOME, QT/KDE, LibreOffice/OpenOffice.org, Firefox, Thunderbird, ...) send print jobs in PDF and not in PostScript any more by default. In addition, a complete CUPS filter chain to process print jobs in PDF is available and used.
 
+PDF 是一种文档格式, 这种文件格式以一种与什么都无关的形式来展示文档, 同样的一个 PDF 文档, 在 PC 程序中, 在手机程序中, 在打印机中, 在 Web 页里, 其展示全都是一样的. PDF 文件包含了完整的关于布局的信息, 包括文本, 字体, 图形, 以及其它任何用来展示它的信息.
+
+PDF 有一套字体嵌入系统, 字体可以嵌入文件中, 与文件一起传输.
+
 ## 打印协议
 
 ### Line Printer Deamon Protocol / Line Printer Remote Protocol
