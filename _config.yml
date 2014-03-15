@@ -3,4 +3,4 @@ tagname:
 pygments: true
 
 paginate: 5 
-#paginate_path: "/page:num"
+#paginate_path: "page:num"
