@@ -31,6 +31,10 @@ date: 2014-01-01 19:37
 ## 数据安全
 但是, 使用了因特网的线路, 数据也就暴露给了整个因特网, 一般机构内部的通信是不希望泄漏给外界的, 所以一般 VPN 网络都有加密的要求.
 
+## GRE 协议
+
+待续...
+
 ## 搭建 VPN (PPTP)
 
 1.  安装 PPTPD
@@ -104,7 +108,7 @@ Okay, 现在可以这样了:  `/etc/init.d/pptpd restart`
         # iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE 
         # iptables-save
 
-    但不幸的是, 很多 openvz 因为缺少内核模块, 导致第一条命令无法使用, MASQUERADE 这个 taget 不被支持. 运行第一条命令就返回 no target/match 之类的错误. 因此我们采取的是另一种效果基本一样的写法:
+    但不幸的是, 很多 openvz 因为缺少内核模块, 导致第一条命令无法使用, MASQUERADE 这个 taget 不被支持(相关的解释可以看我的有关 OpenVZ 的那片日志). 运行第一条命令就返回 no target/match 之类的错误. 因此我们采取的是另一种效果基本一样的写法:
 
         # iptables -t nat -A POSTROUTING -s 192.168.80.0/24 -j SNAT --to-source _PUBLIC IP_
 
@@ -118,9 +122,52 @@ Okay, 现在可以这样了:  `/etc/init.d/pptpd restart`
 
 ### 客户端配置
 
-略
+1.  安装 pptp 软件
+
+        yum -y install pptp
+
+2.  加载 ppp\_mppe 模块(没有的话则要先安装)
+
+    这一步是因为服务器端启用了 mppe 加密, 如果上面配置服务器端时没有启用 mppe 加密, 可以不用加载这个模块.
+
+        modprobe ppp_mppe
+
+3.  创建一个 /etc/ppp/peers/younameit 文件, 加入 pptp 连接参数:
+
+        pty "pptp 198.211.104.17 --nolaunchpppd"
+        name username1
+        password passwd1
+        remotename PPTP
+        require-mppe-128
+
+    其中, `198.211.104.17` 为你的 pptp server 的公网 IP, `name` 为你在 pptp server 上配置的用户名, `password` 是该用户的密码, 其它参数不必修改.
+
+4.  拨号
+
+        # pon younameit
+
+    连接成功后, 运行 `ifconfig` 你就能看到一个新增的 ppp0 接口, 地址处于你在服务器上所配置的地址段(这里是 192.168.80.0/24)
+
+5.  修改默认路由
+
+        # route del default
+        # route add default gw 192.168.80.1
+
+## 后记
+
+由于数据是 128 bit 加密的, 所以与 OpenVPN 比起来 PPTP 更省 CPU, 而且你仍然可以通过额外的加密手段来使通信更安全.
+
+## Troubleshooting
+
+1.  "Protocol not available" 的可能原因: 
+
+    *   客户端或者你的路由器没有开放 1723 端口权限. 
+    *   GFW
 
 ## 参考
 
 1.  [DigitalOcean 的 VPN 搭建教程: https://www.digitalocean.com/community/articles/how-to-setup-your-own-vpn-with-pptp](https://www.digitalocean.com/community/articles/how-to-setup-your-own-vpn-with-pptp)
 2.  [很经典的教程: http://www.putdispenserhere.com/pptp-vpn-setup-guide-for-a-debian-openvz-vps/](http://www.putdispenserhere.com/pptp-vpn-setup-guide-for-a-debian-openvz-vps/)
+3.  [Arch Linux Wiki 的教程, 我没有参考, 但是它的配置方式有些特别: https://wiki.archlinux.org/index.php/PPTP_Server](https://wiki.archlinux.org/index.php/PPTP_Server)
+4.  [早期的 redhat 下的 pptp 教程, 具有历史意义: http://poptop.sourceforge.net/dox/redhat-howto.phtml](http://poptop.sourceforge.net/dox/redhat-howto.phtml)
+5.  [阐述了 Protocol not available 错误的可能原因: http://poptop.sourceforge.net/dox/gre-protocol-unavailable.phtml](http://poptop.sourceforge.net/dox/gre-protocol-unavailable.phtml)
