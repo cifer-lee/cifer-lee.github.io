@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "阿里云服务器配置日志"
+published: false
 date: 2013-07-31
 ---
 

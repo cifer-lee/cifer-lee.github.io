@@ -2,6 +2,7 @@
 layout: post
 title: "15分钟让你熟悉Redis的数据类型"
 date: 2013-07-13
+published: false
 tags: redis 翻译
 ---
 
