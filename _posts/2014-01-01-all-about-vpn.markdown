@@ -164,6 +164,12 @@ Okay, 现在可以这样了:  `/etc/init.d/pptpd restart`
     *   客户端或者你的路由器没有开放 1723 端口权限. 
     *   GFW
 
+2.  依然上不了 twiiter, facebook 等网站
+
+    这个可能是 dns 的问题.
+
+    这个问题一般如果你在 linux 下使用 pon 连解 pptp 时会出现, pon 这样的工具不会自动设置我们提供的 dns (虽然上面我们在 pptp server 配置文件里提供的 dns), 而是仍然使用你的原始连接的运营商的 dns, 这些 dns 自然一般是不会解析 twitter 这些网站的
+
 ## 参考
 
 1.  [DigitalOcean 的 VPN 搭建教程: https://www.digitalocean.com/community/articles/how-to-setup-your-own-vpn-with-pptp](https://www.digitalocean.com/community/articles/how-to-setup-your-own-vpn-with-pptp)
