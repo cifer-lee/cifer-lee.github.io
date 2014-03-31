@@ -5,19 +5,16 @@ title: CIFER.SANCTUARY
 
 <!-- This loops through the paginated posts -->
 <div>
-    <div>
-        <dl>
-            {% for post in paginator.posts %}
-            <dt>
-            <h2><a href="{{ post.url }}">{{ post.title }}</a>
-                <span class="pull-right"><small>{{ post.date | date_to_string }}</small></span>
-            </h2>
-            </dt>
-            <dd>{{ post.content }}</dd>
-            <hr>
-            {% endfor %}
-        </dl>
+  <div>
+    {% for post in paginator.posts %}
+    <div class="item">
+      <a class="item-title" href="{{ post.url }}">{{ post.title }}</a>
+      <div class="item-content">
+        {{ post.content }}
+      </div>
     </div>
+    {% endfor %}
+  </div>
 
     <!-- Pagination links -->
     <div>

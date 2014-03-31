@@ -30,14 +30,18 @@ MetaFont 着实是复杂的字体系统, 随着 Truetype 和 OpenType 的流行,
 
 默认的 family 存在 \familydefault 中, 它的值应该是上面三个变量的值之一. 如果你要改变默认 family, 你应该这样:
 
+{% highlight latex %}
     \renewcommand*{\familydefault}{\sfdefault}
+{% endhighlight %}
 
 这会使得整个文章都使用 Sans Serif 类的默认字体, 在 LaTex 中也就是 Computer Modern Sans Serif, 如果你没有修改过 \sfdefault 的话.
 
 在 LaTex 中, 你应该按照如下步骤改变字体:
 
+{% highlight latex %}
     \renewcommand*{\familydefault}{\sfdefault}
     \renewcommand*\sfdefault{ppl}
+{% endhighlight %}
 
 上面的 \sfdefault 可以替换为 \rmdefault 或者 \ttdefault.
 
@@ -73,19 +77,21 @@ _未完待续..._
 
 Font styles 一般实现在不同的字体文件中. 
 
-控制字形的命令可以参考 wiki, http://en.wikibooks.org/wiki/LaTeX/Fonts#Shapes
-控制字体尺寸的命令可以参考 http://en.wikibooks.org/wiki/LaTeX/Fonts#Sizing\_text
+控制字形的命令可以参考 wiki, [http://en.wikibooks.org/wiki/LaTeX/Fonts#Shapes][font-shape]
+控制字体尺寸的命令可以参考 [http://en.wikibooks.org/wiki/LaTeX/Fonts#Sizing\_text][font-size]
 
 # 本地字体选择
 
 你可以局部的修改文章中某一片段的字体, 有如下命令可以用:
 
-\fontencoding
-\fontfamily
-\fontseries
-\fontshape
+* \fontencoding
+* \fontfamily
+* \fontseries
+* \fontshape
 
-\selectfont 命令是必须的, 否则字体不会被改变, 强烈建议将命令包围在组中.
+`\selectfont` 命令是必须的, 否则字体不会被改变, 强烈建议将命令包围在组中.
 
 
 [AFM]: http://en.wikipedia.org/wiki/Adobe_Font_Metrics#AFM
+[font-shape]: http://en.wikibooks.org/wiki/LaTeX/Fonts#Shapes
+[font-size]: http://en.wikibooks.org/wiki/LaTeX/Fonts#Sizing_text

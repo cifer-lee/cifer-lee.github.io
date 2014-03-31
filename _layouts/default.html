@@ -1,60 +1,49 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>{{ page.title }}</title>
-        <meta name="viewport" content="width=device-width">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>{{ page.title }}</title>
+    <meta name="viewport" content="width=device-width">
 
-        <!-- syntax highlighting CSS -->
-        <link rel="stylesheet" href="/css/syntax.css">
-        <!-- bootstrap CSS -->
-        <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+    <!-- bootstrap CSS -->
+    <!--<link rel="stylesheet" href="/css/bootstrap.min.css">-->
 
-        <!-- Custom CSS -->
-        <link rel="stylesheet" href="/css/main.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/main.css">
 
-        <script>
-            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-            ga('create', 'UA-48551763-1', 'cifer-lee.github.io');
-            ga('send', 'pageview');
+      ga('create', 'UA-48551763-1', 'cifer-lee.github.io');
+      ga('send', 'pageview');
+    </script>
 
-        </script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="">
+        <h2><a href="/">{{ site.name }}</a></h2>
+        <img src="/img/tree.jpg" width="960px" height="352px">
+      </div>
 
-    </head>
-    <body>
+      <div>
+        <a href="/">HOME</a>
+        <a href="/about">ABOUT</a>
+        <a href="/archives">ARCHIVES</a>
+      </div>
 
-        <div class="container" style="width: 100%">
-                <div class="row">
-                    <div class="col-lg-3 text-center left-col" style="background: #555;">
-                        <h2><a href="/">{{ site.name }}</a></h2>
-                        <img style="margin-top: 5em;" src="http://www.gravatar.com/avatar/85b891217ec228df7ffa1d5ec9896bb7?s=160" class="img-circle">
-                        <div style="margin: 1em 0;">
-                            <a href="https://twitter.com/mantianyu" target="_blank"><img src="/img/twitter.svg" class="img-circle"></a>
-                            <a href="https://plus.google.com/109146976390280233432/posts" target="_blank"><img src="/img/google_follow.svg" class="img-circle"></a>
-                        </div>
-                        <h4><a href="/">HOME</a></h4>
-                        <h4><a href="/about">ABOUT</a></h4>
-                        <h4><a href="/archives">ARCHIVES</a></h4>
-                        <h4><a href="/tags">TAGS</a></h4>
-                    </div>
-                    <div class="col-lg-9 right-col">
+      <div class="content">
+        {{ content }}
+      </div>
+    </div> <!-- /container -->
 
-                    {{ content }}
-
-                    <div class="footer">
-                        <div class="contact">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> <!-- /container -->
-
-        <script src="/js/jquery-2.0.3.min.js"></script>
-        <script src="/js/bootstrap.min.js"></script>
-    </body>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+  </body>
 </html>
