@@ -130,3 +130,7 @@ access() 在失败时也会通过 errno 提供错误信息, 当你对要检查�
 # 总结
 
 1.  需要注意的是, 以上四个函数调用都会收到一个共同的限制: 如果要检查的文件/目录文件的父目录没有 x 权限, 那么都会产生 EACCES 错误或者返回 NULL(fopen).
+
+# stackoverflow 上的链接
+
+[http://stackoverflow.com/questions/230062/whats-the-best-way-to-check-if-a-file-exists-in-c-cross-platform](http://stackoverflow.com/questions/230062/whats-the-best-way-to-check-if-a-file-exists-in-c-cross-platform)
