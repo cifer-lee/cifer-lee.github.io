@@ -12,16 +12,7 @@ body {
   line-height: 1.7;
 }
 
-h1 {
-  font-size: 2.5em;
-}
-
-h2 {
-  font-size: 2.2em;
-}
-
 a { text-decoration: none; }
-a:hover { text-decoration: none; }
 
 /*****************************************************************************/
 /*
@@ -33,65 +24,95 @@ a:hover { text-decoration: none; }
 
 /*****************************************************************************/
 /*
-/* Contents
+/* Default Layout
 /*
 /*****************************************************************************/
-.content {
-}
-
-.content a:link { 
-  text-decoration: none; 
+.layout-def h1 a {
   color: #000;
 }
 
-.content a:visited { 
-  text-decoration: none; 
+.layout-def h1 a:visited {
   color: #000;
 }
 
-.content .meta {
+.layout-def #banner {
+  background-image: url(/img/tree.jpg); 
+  border-radius: .6em;
+  height: 312px; 
+}
+
+.layout-def #menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.layout-def #menu ul {
+  list-style-type: none;
+}
+
+.layout-def #menu a { 
+  color: #678;
+  text-decoration: none; 
+}
+
+.layout-def #menu a:visited { 
+  color: #678;
+  text-decoration: none; 
+}
+
+/*****************************************************************************/
+/*
+/* Page Index
+/*
+/*****************************************************************************/
+.page-index .meta {
   text-align: right;
   padding: 0 .4em;
 }
 
-.content .item {
+.page-index .item {
   background-color: #eee;
   padding: 1.5em 1em;
   margin: .5em 0;
   border-radius: .8em;
 }
 
-.content .item-title {
+.page-index .item-title {
+  color: #228;
   font-size: 1.5em;
+  font-weight: bold;
 }
 
-.content .item-content h1 {
+.page-index .item-content h1 {
   font-size: 1.3em;
   color: #296;
 }
 
-.content .item-content h2 {
+.page-index .item-content h2 {
   font-size: 1.1em;
   color: #296;
 }
 
-.content .item-content pre {
+.page-index .item-content pre {
   background-color: #eef;
   padding: 0.4em .4em;
 }
 
-.content .item-content ul, .post ol {
+.page-index .item-content ul, ol {
   margin-left: 1.35em;
 }
 
-.content .item-content code {
+.page-index .item-content code {
   padding: 0 .2em;
 }
 
-.content .item-content pre code {
+.page-index .item-content pre code {
 }
 
-.content .item-content blockquote {
+.page-index .item-content blockquote {
   margin: 0;
   padding: .01em 2em;
   border-left: .5em solid #227788;
@@ -99,61 +120,92 @@ a:hover { text-decoration: none; }
 
 /*****************************************************************************/
 /*
-/* Posts
+/* Layout Posts
 /*
 /*****************************************************************************/
-.post {
+.layout-post .post {
   background-color: #eee;
   padding: 1.5em 1em;
   margin: .5em 0;
   border-radius: .8em;
 }
 
-.post h1 {
+.layout-post .post h1 {
   font-size: 2em;
   color: #296;
 }
 
 /* standard */
-.post pre {
+.layout-post .post pre {
   background-color: #eef;
   padding: 0.4em .4em;
 }
 
-.post ul, .post ol {
+.layout-post .post ul, .layout-post .post ol {
   margin-left: 1.35em;
 }
 
-.post code {
+.layout-post .post code {
   padding: 0 .2em;
 }
 
-.post pre code {
+.layout-post .post pre code {
 }
 
 /* terminal */
-.post pre.terminal {
+.layout-post .post pre.terminal {
   border: 1px solid #000;
   background-color: #333;
   color: #FFF;
 }
 
-.post pre.terminal code {
+.layout-post .post pre.terminal code {
   background-color: #333;
 }
 
-.post blockquote {
+.layout-post .post blockquote {
   margin: 0;
   padding: .01em 2em;
   border-left: .5em solid #227788;
 }
 
 /* comments area */
-.comment {
+.layout-post .comment {
     margin: 25px 0;
 }
 
-.comment h1 {
+.layout-post .comment h1 {
     font-size: 1.5em;
     margin: 15px 0;
+}
+
+/*****************************************************************************/
+/*
+/* Page Archives
+/*
+/*****************************************************************************/
+
+.page-archives {
+  margin: 5px 0;
+  padding: 1em 2em; 
+  border-radius: .6em;
+  background-color: #eee;
+}
+
+.page-archives .item {
+  margin: .3em 0;
+}
+
+.page-archives .item .item-left {
+  float: left;
+}
+
+.page-archives .item .item-left a {
+  font-size: 1.1em;
+  color: #258;
+}
+
+.page-archives .item .item-right {
+  float: right;
+  color: #232;
 }

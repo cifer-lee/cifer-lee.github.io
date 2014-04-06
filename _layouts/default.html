@@ -8,8 +8,6 @@
 
     <!-- syntax highlighting CSS -->
     <link rel="stylesheet" href="/css/syntax.css">
-    <!-- bootstrap CSS -->
-    <!--<link rel="stylesheet" href="/css/bootstrap.min.css">-->
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/main.css">
@@ -27,23 +25,25 @@
   </head>
   <body>
     <div class="container">
-      <div class="">
-        <h2><a href="/">{{ site.name }}</a></h2>
-        <!--<img src="/img/tree.jpg" width="960px" height="352px">-->
-      </div>
+      <div class="layout-def">
+        <h1><a href="/">{{ site.name }}</a></h1>
 
-      <div style="background-image: url(/img/tree.jpg); height: 352px; position: relative;">
-        <div style="position: absolute; bottom: 0; right: 0">
-          <a href="/">HOME</a>
-          <a href="/about">ABOUT</a>
-          <a href="/archives">ARCHIVES</a>
+        <div id="banner"> 
         </div>
-      </div>
 
-      <div class="content">
-        {{ content }}
-      </div>
-    </div> <!-- /container -->
+        <div id="menu"> 
+          <ul>
+            <li><a href="/">HOME</a></li>
+            <li><a href="/about">ABOUT</a></li>
+            <li><a href="/archives">ARCHIVES</a></li>
+          </ul>
+        </div>
+
+        <div>
+          {{ content }}
+        </div>
+      </div> <!-- /container -->
+    </div>
 
     <script src="/js/jquery-2.0.3.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
