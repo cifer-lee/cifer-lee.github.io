@@ -2,7 +2,7 @@
 title: 挂载 (mount) 深入理解
 layout: post
 date: 2014-05-06 20:30
-===
+---
 
 首先引用一句 wiki 上的定义来开篇:
 

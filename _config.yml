@@ -1,6 +1,7 @@
 name: CIFER.SANCTUARY
 tagname: 
 pygments: true
+markdown: kramdown
 
 paginate: 5 
 #paginate_path: "page:num"
