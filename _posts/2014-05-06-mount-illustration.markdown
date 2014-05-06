@@ -20,7 +20,7 @@ date: 2014-05-06 20:30
     
 在这个例子下面有这么一句话: 
 
-    This tells the kernel to attch the filesystem fount on _device_ (which is of type _type_) at the directory _dir_.
+> This tells the kernel to attch the filesystem fount on _device_ (which is of type _type_) at the directory _dir_.
     
 这句话非常重要, 我们一定要明白, 挂载操作, 实际上是把设备 _device_ 中的**文件系统**附加到 _dir_ 上, 然后我们就可以通过访问 _dir_ 来访问这个设备.
 
