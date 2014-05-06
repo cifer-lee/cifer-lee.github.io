@@ -32,7 +32,8 @@ date: 2014-05-06 20:30
 
 什么是挂载点呢? 还是先借用 Wiki 上的一句话:
 
-A mount point is a physical location in the partition used as a root filesystem.
+> A mount point is a physical location in the partition used as a root filesystem.
+
 不幸的是, Wiki 上的这句话并不准确, 这句话的意思也就是说 "挂载点就是 root 分区中的一个位置", 这句话错在 "root 分区" 上.
 
 我们知道在安装 Linux 系统时可能会为磁盘分多个区, 最普遍的情况就是很多用户会给 /home 目录单独分一个区. 而且有一部分用户还会在 /home/username 目录下建立一个专门用来挂载各种设备的目录 (如 /home/username/mnt-point) 而不使用系统的 /mnt 目录. 那么这时候, 难道说 /home/username/mnt-point 这个目录就不是挂载点了吗? 显然它也是挂载点, 但它确并不是位于 root 分区 (即 / 分区).
@@ -47,9 +48,9 @@ A mount point is a physical location in the partition used as a root filesystem.
 
 ## loop device
 
-明白 loop mount 之前, 最好先清除什么是 loop device, 有耐心的话可以参见[维基百科](http://en.wikipedia.org/wiki/Loop_device)中的条目, 或者直接看我下面的描述.
+明白 loop mount 之前, 最好先清除什么是 loop device, 有耐心的话可以参见[维基百科](http://en.wikipedia.org/wiki/Loop_device)中的条目, 比较长, 没耐心的话可以直接看我下面的描述, 简洁些.
 
-简单来说, loop device 能够提供将一个**档案**挂载到某一挂载点的功能. 这和 bind mount (下文会介绍) 有些类似, 但并不相同. 原始的 mount 只是为了将正常的设备挂载, bind mount 使得可以挂载目录, 而 loop device 使得可以挂载**档案**.
+简单来说, loop device 能够提供将一个**档案**挂载到某一目录的功能. 这和 bind mount (下文会介绍) 有些类似, 但并不相同. 原始的 mount 只是为了将正常的设备挂载, bind mount 使得可以挂载目录, 而 loop device 使得可以挂载**档案**.
 
 在 linux 中, loop device 就是指 /dev/loop0, /dev/loop1, /dev/loop2 ... 这些设备, 它们是虚假的设备(pseudo device), 不像 /dev/sda 在你的主机里物理存在. loop device 需要你在编译内核的时候将其静态编译或者编译为动态模块, 然后需要使用 `modprobe` 加载其模块(这个模块包含了 loop device 的驱动程序以及 losetup 这种提供给用户来操作 loop device 的程序), 这时其驱动程序就回创建 /dev/loop0, /dev/loop1 ... 这几个设备文件. 
 
@@ -121,7 +122,7 @@ remount 最常用的情况就是将一个文件系统由只读重新挂载为读
      
 # 非常好的一篇文章
 
-这篇文章也是 参考1 中提到的文章, 由于写的太好, 为了防止其丢失, 我把它转到这里了, 文章在本文的最末尾. 我从这篇文章里摘取了几个比较重要的点作为笔记.
+这篇文章也是 参考1 中提到的文章, 由于写的太好, 为了防止其丢失, 我把它转到这里了, 下面那篇英文就是. 我之所以敢转这篇文章是因为这篇文章的版权声明停留在 2006 年, 它的主人大概是忘了更新. 我从这篇文章里摘取了几个比较重要的点作为笔记.
 
 *   在 "挂载" 的概念中, "设备" 可以是一个分区 (如 /dev/sda9), 可以是另一块磁盘, 可以是 CDROM, 软盘, USB, 磁带等等.
 *   "挂载点" 是一个目录, 而且往往是一个空目录, 但这不是必须的. 如果这个目录不是空的, 那么挂载之后, 这个目录中以前的内容会被 "隐藏" 起来变得不可访问.
