@@ -85,3 +85,5 @@ mod\_wsgi 是个很不错的项目, 这个项目持续了很久, 感谢它的维
 2.  mod\_wsgi 官方的详细配置文档, 强烈推荐: http://code.google.com/p/modwsgi/wiki/ConfigurationGuidelines
 3.  mod\_wsgi 项目新生代, Github 主页: https://github.com/GrahamDumpleton/mod\_wsgi
 4.  PEP 333, WSGI 的标准文档: http://legacy.python.org/dev/peps/pep-0333/#specification-overview
+5.  这篇主题很好的介绍了 FastCGI 和 WSGI 的区别: http://stackoverflow.com/questions/1747266/is-there-a-speed-difference-between-wsgi-and-fcgi
+6.  这篇主题的作者经历很不错, 提问的很广泛, 回答者们的答案虽然都得票不多, 胆答得都很值得一看: http://stackoverflow.com/questions/2532477/mod-cgi-mod-fastcgi-mod-scgi-mod-wsgi-mod-python-flup-i-dont-know-how-m

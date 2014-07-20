@@ -1,0 +1,115 @@
+---
+layout: post
+title: ""
+date: 2014-07-17
+---
+
+Zigbee 是一套通过低功耗数字无线电创建个人通信网络的协议, 基于 IEEE 802.15 标准. Zigbee 是一种 mesh 网络, 没有中心控制器. Zigbee 适用于对传输速率要求不高, 对电池续航要求较高, 对网络安全性要求较高的场景. Zigbee 定义的速率是 250 kbit/s, 非常适合周期性间断的传输数据以及从数据传感器/输入设备传送数据的情景. Zigbee 旨在定义一种比其它个人无线网络更简单的网络, 比如蓝牙, wifi.
+
+Zigbee 网络使用 128 位密钥的对称加密, 依赖于电源输出和环境因素, 其通信范围在 10 ~ 100 米之间.
+
+Zigbee 是一种低成本, 低功耗, 无线 mesh 网络标准. 低廉的成本使得这项技术应用广泛; 低功耗允许更长的待机时间和更小的电池; mesh 网络提供了更稳定的网络以及更远的通信距离. Zigbee 芯片厂家一般都会销售集成了射频模块, MCU, flash memory 的芯片.
+
+Zigbee 的频带, 在欧洲使用 868 MHz, 在美国和澳洲使用 915 MHz, 在世界大部分其他地区使用 2.4 GHz. 868 MHz 时速率在 20 kbit/s, 2.4 GHz 时速率在 250 kbit/s.
+
+Zigbee 支持传统的星状和树状拓扑, 以及一般的 mesh 拓朴. 每一个网络必须有一个协调器设备 (coordinator), 它的负责是网络的参数控制以及基本的维护. 在星型拓朴中, 协调器必须处于中心节点. 树状拓朴与 mesh 拓扑允许通过 Zigbee routers (路由设备) 来扩大通信范围.
+
+Zigbee 协议的最低的两层: 物理层与介质访问层, 采用的是 IEEE 802.15.4 标准. Zigbee 在其之上增加了另外两层: 网络层和应用层. 就像 TCP/IP 的四层结构一样.
+
+# 历史
+
+Zigbee 标准构思始于 1999 年, 这一年, 越来越多的人意识到 wifi, 蓝牙在很多应用场合的不适用性, 尤其是很多工程师都看到了创建自组网络的需求.
+
+在 2004 年, Zigbee 联盟已经拥有 100 多会员公司, 覆盖全球 22 个国家. 2005 年末成员公司涨到 200 多个公司.
+
+Zigbee 的第一个规范在 2004 年 12 月被批准, 在 2005 年 6 月公布于忠, 这个版本是 1.0 版本, 一般成为 Zigbee 2004 Specification.
+
+在 2006 年, Zigbee 2006 Specificaction 发布, 2004 版的标准被废弃.
+
+2007 年, Zigbee 2007 Specification 发布, 也叫做 Zigbee PRO, 它完全兼容 2006 版.
+
+2007 年, 第一个 Zigbee Application Profile, Home Automation 发布.
+
+# 用途
+
+* 家庭娱乐与控制 --- Home automation
+* 无线传感网络
+* 工业控制
+* 嵌入式传感
+* 医疗信息采集
+* 等等
+
+# 标准与 Profile
+
+Zigbee 联盟推出了很多 application profile 来允许其他厂商生产可互操作的产品. IEEE 802.15.4 与 Zigbee 联盟的关系就好像 IEEE 802.11 和 Wi-Fi 联盟的关系一样.
+
+Zigbee 标准与自由软件相关的协议如 GPL 等不符, Linux 下的开发者没有人开发 Zigbee 的产品, 而是使用 TCP/IP.
+
+## Application profiles
+
+当前的 application profiles 有如下这些:
+
+已发布的:
+
+* Zigbee Home Automation
+* Zigbee Smart Energy
+* Zigbee Telecommunication Services
+* Zigbee Health Care
+* Zigbee RF4CE --- Remote Control
+* Zigbee RF4CE --- Input Device
+* Zigbee Light Link
+* Zigbee IP
+* Zigbee Building Automation
+* Zigbee Gateway
+* Zigbee Green Power
+
+# 射频, 无线电硬件
+
+The radio design used by ZigBee has been carefully optimized for low cost in large scale production. It has few analog stages and uses digital circuits wherever possible.
+Though the radios themselves are inexpensive, the ZigBee Qualification Process involves a full validation of the requirements of the physical layer. All radios derived from the same validated semiconductor mask set would enjoy the same RF characteristics. An uncertified physical layer that malfunctions could cripple the battery lifespan of other devices on a ZigBee network. ZigBee radios have very tight constraints on power and bandwidth. Thus, radios are tested with guidance given by Clause 6 of the 802.15.4-2006 Standard. Most vendors plan to integrate the radio and microcontroller onto a single chip[20] getting smaller devices.[21]
+This standard specifies operation in the unlicensed 2.4 GHz (worldwide), 915 MHz (Americas and Australia) and 868 MHz (Europe) ISM bands. Sixteen channels are allocated in the 2.4 GHz band, with each channel requiring 5 MHz of bandwidth. The radios use direct-sequence spread spectrum coding, which is managed by the digital stream into the modulator. Binary phase-shift keying (BPSK) is used in the 868 and 915 MHz bands, and offset quadrature phase-shift keying (OQPSK) that transmits two bits per symbol is used in the 2.4 GHz band.
+The raw, over-the-air data rate is 250 kbit/s per channel in the 2.4 GHz band, 40 kbit/s per channel in the 915 MHz band, and 20 kbit/s in the 868 MHz band. The actual data throughput will be less than the maximum specified bit rate due to the packet overhead and processing delays. For indoor applications at 2.4 GHz transmission distance may be 10–20 m, depending on the construction materials, the number of walls to be penetrated and the output power permitted in that geographical location.[22] Outdoors with line-of-sight, range may be up to 1500 m depending on power output and environmental characteristics[1][citation needed]. The output power of the radios is generally 0-20 dBm (1-100 mW).
+
+# 设备类型, 工作模式
+
+三种类型:
+
+* Zigbee Coordinator 控制中心, zigbee light link 中, 可以没有这个
+* Zigbee Router 能够传递消息
+* Zigbee End Deivce 不能传递消息
+
+Zigbee 协议现在支持 beacon 和 non-beacon 两种网络. 
+
+在 non-beacon 网络中, 一个无槽的 CSMA/CA 访问通道机制被使用, 在这种类型的网络中, Zigbee Router 通常会保持他们的接收器一直是活动的 (上电的), 这就需要给 Zigbee Router 加上可靠的电源 (不要用电池). 这使得网络变得多样化, 一些设备维持活动状态, 随时能够接收消息, 而另一些设备平时可以处于休眠状态, 只有要发送消息的时候才会唤醒. 典型的例子是无线灯控开关: 处于灯中的 Zigbee 节点一直处于接收消息的状态, 所以它需要连接到干线电源, 但是开关可以用电池供电, 因为只有人按它的时候它才会需要发消息, 平时可以处于休眠状态, 不会费多少电. 在这样的网络中, 灯一定要么是 Zigbee Router 类型, 要么是 Zigbee Coordinator 类型; 开关一般是 Zigbee End Device 类型.
+
+在 beacon 网络中, Zigbee Router 类型的节点会周期性的广播 beacon 包来声明他的存在 (可能还有他的状态), 在两次广播之间, 节点可以处于休眠状态, 这就降低了功耗, 延长了电池使用时间. 两个 beacon 之间的间隔时间依赖于数据速率, 在 250 kbit/s 的速率上, 间隔可以从 15.36 ms ~ 251.65824 s 不等; 在 40 kbit/s 的速率上, 间隔可能从 24 ms ~ 393.216 s 不等; 在 20 kbit/s 的速率上, 间隔可能从 48 ms ~ 768.432 s 不等. 但是, beacon 网络这种间隔广播的机制需要准确的时间机制, 要加 RTC 模块, 这就与低成本的目标有冲突.
+
+Zigbee 协议会尽力的减小设备处于活动状态的时间, 以降低功耗. 在 beaconing 网络中, 节点只需要在要发送 beacon 包的时候被激活; 在 non-beacon 网络中, 功耗是严重不对称的: 有些设备需要一直处于活动状态, 而另一些则绝大部分时间处于休眠状态.
+
+除了 Smart Energy Profile 2.0 之外, Zigbee 设备都需要遵循 IEEE 802.15.4-2003  Low-Rate Wireless Personal Area Network (LR-WPAN) 标准. 这份标准涉及到协议的底层 --- 物理层 (physical layer, PHY), 以及数据链路层 (DLL) 中的介质访问层 (MAC). 信道的基本通信方式是 "carrier sense, multiple access/collision avoidance"(CSMA/CA). 也就是说, 设备节点之间通信和我们人类交流是一样的. 设备节点先检查有没有别的节点在说话, 有的话自己就不说, 没的话自己就说. 有三个例外是: 1. beacon 包不遵守这条规则, beacon 包就是按一定时间间隔发送的; 2. 应答包不遵守这条规则; 3. 在 beaconing 网络中的, 有低延迟需求的设备, 可能使用 GTS (Guaranteed Time Slots) 机制, 显然也不使用 CSMA.
+
+# 软件层
+
+## 网络层
+
+包装 MAC 层, 为应用层提供接口, 网络层包含管理数据传输的对象, 包含处理配置信息, 控制网络连接的功能: 网络层能够决定友邻设备是否属于自己的网络, 以及发现新的设备.
+
+网络层所使用的路由协议叫做 AODV. 为了发现新的设备, 网络层向所有的友邻发送一个广播消息, 友邻收到广播消息后也会将这个消息广播给它的友邻, 依次递推. 一旦目标设备到达, 目标设备就会发回一个单播消息, 依循最小代价路由机制, 当源点收到回应之后, 就会更新他的路由表.
+
+## 应用层
+
+应用层是协议里指定的最高层, 也是开发者所能直接接触到的层面. 应用层是由几个组件组成的, 包括 ZDO, APS, 以及厂商自己加的一些组件.
+
+### 主要的组件
+
+ZDO, 全称 Zigbee Device Object, 负责和设备相关的操作, 比如设定设备类型. 
+
+APS, Application Support Sublayer 也是一个重要的组件, 提供一些支持服务.
+
+## 通信模型
+
+构成网络的节点们之间的通信是使用 APS 提供的功能, 在一个设备上, 最多可以有 140 个 ZDO 存在.
+
+## 通信与发现
+
+为了使不同设备的应用层之间可以交互, 设备之间应用层协议必须一致 (消息类型, 格式等); 这就是 Profile. 

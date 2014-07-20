@@ -1,0 +1,98 @@
+---
+layout: post
+title: "DNSBL 简介"
+date: 2014-07-20 09:46
+---
+
+DNS-based Blackhole List (DNSBL) 或者 Real-time Blackhole List (RBL) 是一个 IP 地址列表, 上面的 IP 地址都是一些制造垃圾的机器的 IP 地址. Blackhole List 这个词也可以叫做 blacklist 或者 blocklist.
+
+目前存在很多的 DNSBL, 他们在将一个 IP 地址加入或者移除列表的时候要依循很多准则. DNSBL 中一般都是一些僵尸机器 (指常年没有人维护, 被黑客利用的机器), 还有那些被劫持了的用来滋生垃圾的 ISP 商.
+
+当一个地址将要被加入到 DNSBL 中时, 列表维护者或者 MAPS 的员工会试图和主机的管理员联系, 这是很重要的工作.
+
+DNSBL 是一个软件层面的实现, 并没有什么标准或者协议. 但是就想上面说的, DNSBL 实现时要遵守一些策略, 准则. 当第一版 DNSBL 软件被开发出来时, 它的操作和策略是很受争议的, 与互联网的精神以及法律都有冲突. 邮件服务器的管理员很喜欢这个东西, 但是其他像是互联网激进分子评论家之类的人就不同意了.
+
+# 历史
+
+第一个 DNSBL 实现叫做 Real-time Blackhole List (前面说了 DNSBL 没有什么标准或协议, 是一种软件实现, 不同 DNSBL 软件实现的差别在于其添加移除列表中 IP 所使用的策略), 从 Real-time 可以看出这是一个比较严格的实现. 
+
+之后 DNSBL 成为 MAPS (Mail Abuse Prevention System) 系统的一部分. 关于 MAPS, 可字形 google. 
+
+当 RBL 被实现出来后, 其他的 DNSBL 也慢慢出来了, 有 ORBS (Open Relay Behavior-modification System) 等.  他们采用与 RBL 不同的策略,
+
+后来 sendmail, postfix 这些邮件软件也被建议实现 DNSBL 机制, 这使得这些软件在 forward 邮件的时候会先去 DNSBL 列表里找找来源地址是不是在列表里.
+
+# URI DNSBLs
+
+我个人认为这也是一种策略. 详情可参考参考2.
+
+# DNSBL 如何工作
+
+运行一个 DNSBL 需要三样东西:
+
+* 一个域名, 来让邮件服务器找到它
+* 一个名字服务器来解析这个域名
+* 一份列表
+
+看起来, 这样的功能可以在 DNS 软件中顺便就给实现了, 但实际上有很多不适宜的因素, 对于包含着很多地址的大型的 DNS 服务器很不适合干这个活, 尤其是当 DNSBL 中包含 CIDR 的时候, DNS 服务器干这个比较耗费资源.
+
+运作一个 DNSBL, 最困难的部分还是填充它的列表. 提供给公众的 DNSBL 都会包含它的策略说明, 这些策略应该建立在公众的信任下.
+
+## DNSBL 查询
+
+当一台邮件服务器接收到客户端的连接时, 它会按照如下的流程来检查这个客户端是不是在它所使用的 DNSBL (假设是 dnsbl.example.net) 里:
+
+1.  Take the client's IP address—say, 192.168.42.23—and reverse the order of octets, yielding 23.42.168.192.
+2.  Append the DNSBL's domain name: 23.42.168.192.dnsbl.example.net.
+3.  Look up this name in the DNS as a domain name ("A" record). This will return either an address, indicating that the client is listed; or an "NXDOMAIN" ("No such domain") code, indicating that the client is not.
+4.  Optionally, if the client is listed, look up the name as a text record ("TXT" record). Most DNSBLs publish information about why a client is listed as TXT records.
+
+Looking up an address in a DNSBL is thus similar to looking it up in reverse-DNS. The differences are that a DNSBL lookup uses the "A" rather than "PTR" record type, and uses a forward domain (such as dnsbl.example.net above) rather than the special reverse domain in-addr.arpa.
+
+There is an informal protocol for the addresses returned by DNSBL queries which match. Most DNSBLs return an address in the 127.0.0.0/8 IP loopback network. The address 127.0.0.2 indicates a generic listing. Other addresses in this block may indicate something specific about the listing—that it indicates an open relay, proxy, spammer-owned host, etc. For details see RFC 5782.
+
+## URI DNSBL
+
+A URI DNSBL query (and an RHSBL query) is fairly straightforward. The domain name to query is prepended to the DNS list host as follows:
+
+    example.net.dnslist.example.com
+
+where dnslist.example.com is the DNS list host and example.net is the queried domain. Generally if an A record is returned the name is listed.
+
+## DNSBL 策略
+
+不同的 DNSBL 有着不同的策略, 这些不同体现在三个方面:
+
+* **Goals** What does the DNSBL seek to list? Is it a list of open-relay mail servers or open proxies—or of IP addresses known to send spam—or perhaps of IP addresses belonging to ISPs that harbor spammers?
+* **Nomination** How does the DNSBL discover addresses to list? Does it use nominations submitted by users? Spam-trap addresses or honeypots?
+* **Listing lifetime** How long does a listing last? Are they automatically expired, or only removed manually? What can the operator of a listed host do to have it delisted?
+
+# 几个 DNSBL 比较
+
+这个按照维护者来分类更好:
+
+## UCEPROTECT-Network
+
+这个组织维护了三个列表: UCEPROTECT Level 1, UCEPROTECT Level 2, UCEPROTECT Level 3.
+
+# 参考1 原文
+
+> ## Definition - What does Real-Time Blackhole List (RBL) mean?
+
+> Real-time blackhole list (RBL) is a dynamic list of IP address owners that are active spammers or spam sources. The RBL may include Internet service providers (ISP) with customers that are known spammers or ISP servers that are hijacked for spamming purposes. 
+
+> RBL is also known as a DNS Black List (DNSBL). 
+
+> ## Techopedia explains Real-Time Blackhole List (RBL)
+
+> The majority of spam is the result of online advertisements and unsolicited bulk email (UBE). When spam is delivered, the forwarding IP address is added to the RBL.
+
+> The RBL prevents system abuse by halting spam. However, the blacklisting process must be handled carefully. It cannot prohibit appropriate or authentic source connections or open-source networking. If an ISP subscribes to the RBL, the ISP may determine which IP addresses should be blocked and added to the RBL. If an IP address matches an IP address listed on the RBL, the connection is automatically dropped.
+
+> The RBL was first implemented by the Mail Abuse Prevention System (MAPS), which was acquired by Trend Micro in 2005. Trend Micro adheres to strict guidelines and policies in its continuous effort to nominate and remove spam IP addresses from its blackhole data listings.
+
+# 参考
+
+1.  介绍了 RBL (DNSBL 第一代): http://www.techopedia.com/definition/25294/real-time-blackhole-list-rbl
+2.  DNSBL wiki 页: http://en.wikipedia.org/wiki/DNSBL
+3.  DNSBL 之父的言论: http://sunsite.uakom.sk/sunworldonline/swol-12-1997/swol-12-vixie.html

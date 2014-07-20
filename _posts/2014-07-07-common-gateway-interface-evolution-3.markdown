@@ -110,6 +110,10 @@ WSGIServer 这个类的 run() 方法调用后, 就启动了一个 fastcgi server
 
 关于 wsgi 的更多内容, 可见本系列的番外篇.
 
+### 补充一点
+
+python 有个库叫做 fcgi-python, 是方便别人用 python 写 fastcgi server 用的.
+
 [未完待续...]
 
 # 参考
@@ -122,3 +126,4 @@ WSGIServer 这个类的 run() 方法调用后, 就启动了一个 fastcgi server
 6.  mod\_wsgi 官方的文档, 强烈推荐: http://code.google.com/p/modwsgi/wiki/QuickConfigurationGuide
 7.  django 配置 fastcgi 的教程: https://docs.djangoproject.com/en/dev/howto/deployment/fastcgi/
 8.  flup 配置 fastcgi 的教程: http://wiki.dreamhost.com/Python\_FastCGI
+9.  有关 python 使用 fastcgi 的主题: http://stackoverflow.com/questions/7048057/running-python-through-fastcgi-for-nginx?lq=1
