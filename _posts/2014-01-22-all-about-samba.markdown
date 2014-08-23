@@ -76,3 +76,4 @@ Local Master Browser 可以有很多备份.
 ### 参考资料
 
 1.  man smb.conf (强烈推荐)
+2.  鸟哥私房菜
