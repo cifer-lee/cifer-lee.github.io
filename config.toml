@@ -1,4 +1,44 @@
-baseURL = "http://example.org/"
-languageCode = "en-us"
+baseURL = "https://cifer97.github.io"
+languageCode = "zh-CN"
 title = "编程笔记"
 theme = "yinyang"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.highlight]
+    guessSyntax = true
+    noClasses = true
+    style = "bw"
+    tabWidth = 2
+
+[author]
+  name = "Cifer"
+  homepage = "https://cifer97.github.io/"
+
+#[languages]
+#  [languages.en]
+#    contentDir = "content/en"
+#    languageName = "English"
+#    weight = 2
+#  [languages.cn]
+#    contentDir = "content/cn"
+#    languageName = "Chinese"
+#    weight = 1
+
+[params]
+headTitle = "编程笔记"
+mainSections = ["posts"]
+disqus = "justforfree" # disqus account name
+extraHead = '<script async src="https://www.googletagmanager.com/gtag/js?id=UA-xxx"></script>'
+[[params.socials]]
+name = "About Me"
+#link = "https://joway.io"
+[[params.socials]]
+name = "Github"
+link = "https://github.com/cifer76"
+postHeaderContent = ""
+postFooterContent = "<br/><br/><p>Subscribe to：<a target='_blank' href='https://mailchi.mp/a1a0d59e7a19/joway'>Joway's Blog</a></p>"
+# extraCSSFiles = ["css/foo.css", "css/bar.css"]
+extraCSSFiles = []
