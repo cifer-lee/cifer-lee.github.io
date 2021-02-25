@@ -15,7 +15,7 @@ theme = "yinyang"
 
 [author]
   name = "Cifer"
-  homepage = "https://cifer97.github.io/"
+  homepage = "https://cifer76.github.io/"
 
 #[languages]
 #  [languages.en]
@@ -31,7 +31,11 @@ theme = "yinyang"
 headTitle = "编程笔记"
 mainSections = ["posts"]
 disqus = "justforfree" # disqus account name
-extraHead = '<script async src="https://www.googletagmanager.com/gtag/js?id=UA-xxx"></script>'
+#extraHead = '<script async src="https://www.googletagmanager.com/gtag/js?id=UA-xxx"></script>'
+
+[[params.socials]]
+name = "Books"
+link = "/posts/books/"
 [[params.socials]]
 name = "About Me"
 #link = "https://joway.io"
