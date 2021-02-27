@@ -35,7 +35,7 @@ disqus = "justforfree" # disqus account name
 
 [[params.socials]]
 name = "Books"
-link = "/posts/books/"
+link = "/books"
 [[params.socials]]
 name = "About Me"
 #link = "https://joway.io"
