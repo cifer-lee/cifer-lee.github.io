@@ -1,0 +1,281 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=generator content="Hugo 0.81.0"><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content="Cifer"><meta property="og:url" content="https://cifer97.github.io/posts/binary-tree-traversal/"><link rel=canonical href=https://cifer97.github.io/posts/binary-tree-traversal/><link rel=alternate type=application/atom+xml href=https://cifer97.github.ioindex.xml title=编程笔记><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/cifer97.github.io"},"articleSection":"posts","name":"二叉树递归遍历的本质以及用迭代遍历精确模拟递归遍历","headline":"二叉树递归遍历的本质以及用迭代遍历精确模拟递归遍历","description":"递归遍历是实现深度优先遍历的既直观又简单的方式, 二叉树递归遍历的本质其实就是在不断的压栈与出栈, 明白了这一道理之后就很容易借助栈结构来将递归遍历转换成迭代遍历.\nvoid traverse(struct TreeNode *root) { if (root) { \/* 1 *\/ traverse(root-\u0026gt;left); \/* 2 *\/ traverse(root-\u0026gt;right); \/* 3 *\/ } }  上面的 1, 2, 3 三个位置是节点访问可能发生的位置, 分别为先序, 中序, 后序遍历. 下面我们不考虑对节点数据的访问, 单独分析一下递归遍历过程的细节.\n函数调用与递归的本质 要分析递归遍历的细节, 我们就要知道递归的过程中发生了什么, 而递归实际上也只是函数调用的一种, 所以我们需要先来看一下函数调用的过程中发生了什么.\n当函数调用发生时, 传给该函数的参数, 以及被调函数内部的局部变量都会被压入栈中 (现在的处理器和编译器基本都支持通过寄存器传参, 这里我们没必要考虑这些个情况), 而在被调函数返回时, 这些信息又都会从栈中弹出. 递归只是一种自己调用自己的函数调用, 也是符合这个规则的.\n我们以上面的 traverse(struct TreeNode *root) 方法和下面的一颗二叉树为例, 观察一下递归遍历过程中的栈变化.\n A \/ \\ B C \/ \\ \/ \\ D E F G  其中 A 是根节点, 遍历过程由 traverse(root) 被调用开始, 那么按照上述的规则, 会发生如下几步, 为方便起见, 栈的增长为从左往右:","inLanguage":"en-US","author":"Cifer","creator":"Cifer","publisher":"Cifer","accountablePerson":"Cifer","copyrightHolder":"Cifer","copyrightYear":"2016","datePublished":"2016-10-22 17:24:36 \u002b0000 UTC","dateModified":"2016-10-22 17:24:36 \u002b0000 UTC","url":"https:\/\/cifer97.github.io\/posts\/binary-tree-traversal\/","keywords":["algorithm","binary tree","leetcode","DFS"]}</script><title>二叉树递归遍历的本质以及用迭代遍历精确模拟递归遍历</title><meta property="og:title" content="二叉树递归遍历的本质以及用迭代遍历精确模拟递归遍历"><meta property="og:type" content="article"><meta property="og:description" content="递归遍历是实现深度优先遍历的既直观又简单的方式, 二叉树递归遍历的本质其实就是在不断的压栈与出栈, 明白了这一道理之后就很容易借助栈结构来将递归遍历转换成迭代遍历.
+void traverse(struct TreeNode *root) { if (root) { /* 1 */ traverse(root-&amp;gt;left); /* 2 */ traverse(root-&amp;gt;right); /* 3 */ } }  上面的 1, 2, 3 三个位置是节点访问可能发生的位置, 分别为先序, 中序, 后序遍历. 下面我们不考虑对节点数据的访问, 单独分析一下递归遍历过程的细节.
+函数调用与递归的本质 要分析递归遍历的细节, 我们就要知道递归的过程中发生了什么, 而递归实际上也只是函数调用的一种, 所以我们需要先来看一下函数调用的过程中发生了什么.
+当函数调用发生时, 传给该函数的参数, 以及被调函数内部的局部变量都会被压入栈中 (现在的处理器和编译器基本都支持通过寄存器传参, 这里我们没必要考虑这些个情况), 而在被调函数返回时, 这些信息又都会从栈中弹出. 递归只是一种自己调用自己的函数调用, 也是符合这个规则的.
+我们以上面的 traverse(struct TreeNode *root) 方法和下面的一颗二叉树为例, 观察一下递归遍历过程中的栈变化.
+ A / \ B C / \ / \ D E F G  其中 A 是根节点, 遍历过程由 traverse(root) 被调用开始, 那么按照上述的规则, 会发生如下几步, 为方便起见, 栈的增长为从左往右:"><meta name=description content="递归遍历是实现深度优先遍历的既直观又简单的方式, 二叉树递归遍历的本质其实就是在不断的压栈与出栈, 明白了这一道理之后就很容易借助栈结构来将递归遍历转换成迭代遍历.
+void traverse(struct TreeNode *root) { if (root) { /* 1 */ traverse(root-&amp;gt;left); /* 2 */ traverse(root-&amp;gt;right); /* 3 */ } }  上面的 1, 2, 3 三个位置是节点访问可能发生的位置, 分别为先序, 中序, 后序遍历. 下面我们不考虑对节点数据的访问, 单独分析一下递归遍历过程的细节.
+函数调用与递归的本质 要分析递归遍历的细节, 我们就要知道递归的过程中发生了什么, 而递归实际上也只是函数调用的一种, 所以我们需要先来看一下函数调用的过程中发生了什么.
+当函数调用发生时, 传给该函数的参数, 以及被调函数内部的局部变量都会被压入栈中 (现在的处理器和编译器基本都支持通过寄存器传参, 这里我们没必要考虑这些个情况), 而在被调函数返回时, 这些信息又都会从栈中弹出. 递归只是一种自己调用自己的函数调用, 也是符合这个规则的.
+我们以上面的 traverse(struct TreeNode *root) 方法和下面的一颗二叉树为例, 观察一下递归遍历过程中的栈变化.
+ A / \ B C / \ / \ D E F G  其中 A 是根节点, 遍历过程由 traverse(root) 被调用开始, 那么按照上述的规则, 会发生如下几步, 为方便起见, 栈的增长为从左往右:"><meta property="og:locale" content="zh-CN"><style>body{font-family:bree serif,sans-serif;-webkit-font-smoothing:antialiased;margin:0 20px}article{max-width:800px;margin-left:auto;margin-right:auto}a{color:#000;text-decoration:none}a:hover{font-weight:600;text-decoration:underline}.post-ads{margin:50px 0}.markdown-body{font-size:18px;max-width:100%}.markdown-body a{text-decoration:underline;text-decoration-color:#000}.markdown-body pre{padding:16px;overflow:auto;border-radius:10px}.markdown-body code{padding:.2em .4em;font-size:85%;background-color:#f6f8fa;border-radius:6px}.markdown-body pre>code{padding:0;font-size:100%;background-color:inherit;border:0}.Chinese .markdown-body{line-height:200%}.site-date-catalog{font-size:2rem}.header-title{font-size:2rem;font-weight:700;margin-top:32px;font-family:bungee shade,sans-serif}.header-title a{text-decoration:none}.header-subtitle{color:#666}.header-items{margin:10px 0}.header-item{margin:0 5px}.header-line{width:100%;border-width:2px;border-color:#482936;border-style:solid none none none}.lang-switch{font-weight:600}#posts-list{min-height:600px}.posts-line{font-size:1.2rem;margin:12px 0}.posts-categories{font-size:.8rem;margin:auto;text-align:center}.posts-category{padding:3px 0;border:#000 2px solid;border-radius:5px}.site-footer{margin-top:50px}.site-footer-item{margin-right:12px}.post-content img{max-width:100%;display:block;margin-left:auto;margin-right:auto;margin-top:12px}.post-header{margin-bottom:50px}.post-title{font-size:2rem;font-weight:600}.post-category{display:inline;font-weight:600;padding:2px 5px;border:#000 2px solid;border-radius:5px}.post-date{font-weight:800;font-style:italic}.post-author{float:right;font-weight:600}.page-content{min-height:60%}.post-content{margin-bottom:50px}.post-content p{hyphens:auto;line-height:1.8;text-justify:ideographic;margin-bottom:1em}.related-content{border-width:3px;border-style:solid;border-color:#000;padding:0 10px;margin-bottom:50px;margin-top:100px}.related-content li{margin:5px 0}.taxonomy-term{font-size:3rem}.gallery-img{text-align:center}.gallery-img span{text-align:center}.gallery-img-desc{font-size:.8em;font-weight:800}#disqus_thread{position:relative}#disqus_thread:after{content:"";display:block;height:55px;width:100%;position:absolute;bottom:0;background:#fff}@media screen and (max-width:600px){.header-title,.header-subtitle,.header-items{text-align:center}.posts-line{font-size:16px}.markdown-body{font-size:16px}.post-title{font-size:2rem}.post-content p{letter-spacing:.05em}}@media screen and (max-width:48em){.posts-category{display:none}}</style><style>.container,.container-fluid{margin-right:auto;margin-left:auto}.container-fluid{padding-right:2rem;padding-left:2rem}.row{box-sizing:border-box;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-flex:0;-ms-flex:0 1 auto;flex:initial;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-ms-flex-wrap:wrap;flex-wrap:wrap;margin-right:-.5rem;margin-left:-.5rem}.row.reverse{-webkit-box-orient:horizontal;-webkit-box-direction:reverse;-ms-flex-direction:row-reverse;flex-direction:row-reverse}.col.reverse{-webkit-box-orient:vertical;-webkit-box-direction:reverse;-ms-flex-direction:column-reverse;flex-direction:column-reverse}.col-xs,.col-xs-1,.col-xs-10,.col-xs-11,.col-xs-12,.col-xs-2,.col-xs-3,.col-xs-4,.col-xs-5,.col-xs-6,.col-xs-7,.col-xs-8,.col-xs-9,.col-xs-offset-0,.col-xs-offset-1,.col-xs-offset-10,.col-xs-offset-11,.col-xs-offset-12,.col-xs-offset-2,.col-xs-offset-3,.col-xs-offset-4,.col-xs-offset-5,.col-xs-offset-6,.col-xs-offset-7,.col-xs-offset-8,.col-xs-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-xs{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-xs-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-xs-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-xs-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-xs-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-xs-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-xs-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-xs-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-xs-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-xs-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-xs-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-xs-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-xs-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-xs-offset-0{margin-left:0}.col-xs-offset-1{margin-left:8.33333333%}.col-xs-offset-2{margin-left:16.66666667%}.col-xs-offset-3{margin-left:25%}.col-xs-offset-4{margin-left:33.33333333%}.col-xs-offset-5{margin-left:41.66666667%}.col-xs-offset-6{margin-left:50%}.col-xs-offset-7{margin-left:58.33333333%}.col-xs-offset-8{margin-left:66.66666667%}.col-xs-offset-9{margin-left:75%}.col-xs-offset-10{margin-left:83.33333333%}.col-xs-offset-11{margin-left:91.66666667%}.start-xs{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-xs{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-xs{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-xs{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-xs{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-xs{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-xs{-ms-flex-pack:distribute;justify-content:space-around}.between-xs{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-xs{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-xs{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}@media only screen and (min-width:48em){.container{width:49rem}.col-sm,.col-sm-1,.col-sm-10,.col-sm-11,.col-sm-12,.col-sm-2,.col-sm-3,.col-sm-4,.col-sm-5,.col-sm-6,.col-sm-7,.col-sm-8,.col-sm-9,.col-sm-offset-0,.col-sm-offset-1,.col-sm-offset-10,.col-sm-offset-11,.col-sm-offset-12,.col-sm-offset-2,.col-sm-offset-3,.col-sm-offset-4,.col-sm-offset-5,.col-sm-offset-6,.col-sm-offset-7,.col-sm-offset-8,.col-sm-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-sm{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-sm-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-sm-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-sm-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-sm-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-sm-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-sm-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-sm-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-sm-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-sm-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-sm-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-sm-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-sm-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-sm-offset-0{margin-left:0}.col-sm-offset-1{margin-left:8.33333333%}.col-sm-offset-2{margin-left:16.66666667%}.col-sm-offset-3{margin-left:25%}.col-sm-offset-4{margin-left:33.33333333%}.col-sm-offset-5{margin-left:41.66666667%}.col-sm-offset-6{margin-left:50%}.col-sm-offset-7{margin-left:58.33333333%}.col-sm-offset-8{margin-left:66.66666667%}.col-sm-offset-9{margin-left:75%}.col-sm-offset-10{margin-left:83.33333333%}.col-sm-offset-11{margin-left:91.66666667%}.start-sm{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-sm{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-sm{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-sm{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-sm{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-sm{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-sm{-ms-flex-pack:distribute;justify-content:space-around}.between-sm{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-sm{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-sm{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}@media only screen and (min-width:64em){.container{width:65rem}.col-md,.col-md-1,.col-md-10,.col-md-11,.col-md-12,.col-md-2,.col-md-3,.col-md-4,.col-md-5,.col-md-6,.col-md-7,.col-md-8,.col-md-9,.col-md-offset-0,.col-md-offset-1,.col-md-offset-10,.col-md-offset-11,.col-md-offset-12,.col-md-offset-2,.col-md-offset-3,.col-md-offset-4,.col-md-offset-5,.col-md-offset-6,.col-md-offset-7,.col-md-offset-8,.col-md-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-md{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-md-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-md-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-md-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-md-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-md-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-md-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-md-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-md-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-md-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-md-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-md-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-md-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-md-offset-0{margin-left:0}.col-md-offset-1{margin-left:8.33333333%}.col-md-offset-2{margin-left:16.66666667%}.col-md-offset-3{margin-left:25%}.col-md-offset-4{margin-left:33.33333333%}.col-md-offset-5{margin-left:41.66666667%}.col-md-offset-6{margin-left:50%}.col-md-offset-7{margin-left:58.33333333%}.col-md-offset-8{margin-left:66.66666667%}.col-md-offset-9{margin-left:75%}.col-md-offset-10{margin-left:83.33333333%}.col-md-offset-11{margin-left:91.66666667%}.start-md{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-md{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-md{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-md{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-md{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-md{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-md{-ms-flex-pack:distribute;justify-content:space-around}.between-md{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-md{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-md{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}@media only screen and (min-width:75em){.container{width:76rem}.col-lg,.col-lg-1,.col-lg-10,.col-lg-11,.col-lg-12,.col-lg-2,.col-lg-3,.col-lg-4,.col-lg-5,.col-lg-6,.col-lg-7,.col-lg-8,.col-lg-9,.col-lg-offset-0,.col-lg-offset-1,.col-lg-offset-10,.col-lg-offset-11,.col-lg-offset-12,.col-lg-offset-2,.col-lg-offset-3,.col-lg-offset-4,.col-lg-offset-5,.col-lg-offset-6,.col-lg-offset-7,.col-lg-offset-8,.col-lg-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-lg{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-lg-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-lg-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-lg-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-lg-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-lg-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-lg-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-lg-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-lg-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-lg-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-lg-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-lg-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-lg-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-lg-offset-0{margin-left:0}.col-lg-offset-1{margin-left:8.33333333%}.col-lg-offset-2{margin-left:16.66666667%}.col-lg-offset-3{margin-left:25%}.col-lg-offset-4{margin-left:33.33333333%}.col-lg-offset-5{margin-left:41.66666667%}.col-lg-offset-6{margin-left:50%}.col-lg-offset-7{margin-left:58.33333333%}.col-lg-offset-8{margin-left:66.66666667%}.col-lg-offset-9{margin-left:75%}.col-lg-offset-10{margin-left:83.33333333%}.col-lg-offset-11{margin-left:91.66666667%}.start-lg{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-lg{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-lg{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-lg{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-lg{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-lg{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-lg{-ms-flex-pack:distribute;justify-content:space-around}.between-lg{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-lg{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-lg{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}</style><link href=/index.xml rel=alternate type=application/rss+xml title=编程笔记><link rel=preconnect href=https://fonts.gstatic.com><link href="https://fonts.googleapis.com/css?family=Bree+Serif|Bungee+Shade" rel=stylesheet></head><body><article class=post id=article><div class=row><div class=col-xs-12><div class=site-header><header><div class=header-title><a href=/>编程笔记</a></div><div class=header-subtitle></div></header><div class="row end-md center-xs header-items"><div class=header-item><a href=/books>Books</a></div><div class=header-item><a href=https://github.com/cifer76>Github</a></div></div><div class="row end-xs"></div><div class=header-line></div></div><header class=post-header><h1 class=post-title>二叉树递归遍历的本质以及用迭代遍历精确模拟递归遍历</h1><div class="row post-desc"><div class=col-xs-6><time class=post-date datetime="2016-10-22 17:24:36 UTC">22 Oct 2016</time></div><div class=col-xs-6><div class=post-author><a target=_blank href=https://cifer76.github.io/>@Cifer</a></div></div></div></header><div class="post-content markdown-body"><p>递归遍历是实现深度优先遍历的既直观又简单的方式, 二叉树递归遍历的本质其实就是在不断的压栈与出栈, 明白了这一道理之后就很容易借助栈结构来将递归遍历转换成迭代遍历.</p><pre><code>void traverse(struct TreeNode *root)
+{
+    if (root) {
+        /* 1 */
+        traverse(root-&gt;left);
+        /* 2 */
+        traverse(root-&gt;right);
+        /* 3 */
+    }
+}
+</code></pre><p>上面的 1, 2, 3 三个位置是节点访问可能发生的位置, 分别为先序, 中序, 后序遍历. 下面我们不考虑对节点数据的访问, 单独分析一下递归遍历过程的细节.</p><h2 id=函数调用与递归的本质>函数调用与递归的本质</h2><p>要分析递归遍历的细节, 我们就要知道递归的过程中发生了什么, 而递归实际上也只是函数调用的一种, 所以我们需要先来看一下函数调用的过程中发生了什么.</p><p>当函数调用发生时, 传给该函数的参数, 以及被调函数内部的局部变量都会被压入栈中 (现在的处理器和编译器基本都支持通过寄存器传参, 这里我们没必要考虑这些个情况), 而在被调函数返回时, 这些信息又都会从栈中弹出. 递归只是一种自己调用自己的函数调用, 也是符合这个规则的.</p><p>我们以上面的 <code>traverse(struct TreeNode *root)</code> 方法和下面的一颗二叉树为例, 观察一下递归遍历过程中的栈变化.</p><pre><code>                        A
+                     /     \
+                    B       C
+                   / \     / \
+                  D   E   F   G
+</code></pre><p>其中 A 是根节点, 遍历过程由 <code>traverse(root)</code> 被调用开始, 那么按照上述的规则, 会发生如下几步, 为方便起见, 栈的增长为从左往右:</p><ol><li><p>traverse(A) 被调用, A 节点入栈</p><pre><code>------------
+| A |   |
+------------
+</code></pre></li><li><p>在 A 层 traverse 中, 判断 A 不是 NULL, 于是调用 <code>traverse(root->left)</code>, 也就是 <code>traverse(B)</code>, 于是 B 入栈</p><pre><code>------------
+| A | B |
+------------
+</code></pre></li><li><p>判断 B 不是 NULL, 继续调用 <code>traverse(root->left)</code>, 即 <code>traverse(D)</code>, 于是 D 入栈</p><pre><code>----------------
+| A | B | D |
+----------------
+</code></pre></li><li><p>判断 D 不是 NULL, 继续调用 <code>traverse(root->left)</code>, 即 <code>traverse(NULL)</code>, 于是 NULL 入栈</p><pre><code>------------------
+| A | B | D | NULL
+------------------
+</code></pre></li><li><p>这层 <code>traverse</code> 的 <code>if</code> 判断为 NULL, 函数直接返回, 返回时将弹出栈顶的 NULL</p><pre><code>------------------
+| A | B | D |
+------------------
+</code></pre></li><li><p>到达 D 层的 <code>traverse</code>, 继续调用 <code>traverse(root->right)</code>, 即 <code>traverse(NULL)</code>, 于是 NULL 入栈</p><pre><code>------------------
+| A | B | D | NULL
+------------------
+</code></pre></li><li><p>和 <code>5.</code> 的情况一样, 这层函数将直接返回, 并弹出栈顶的 NULL</p><pre><code>------------------
+| A | B | D |
+------------------
+</code></pre></li><li><p>此时 D 层 <code>traverse</code> 也结束了, 函数返回, 并弹出栈顶的 D</p><pre><code>------------
+| A | B |
+------------
+</code></pre></li><li><p>回到 B 层 <code>traverse</code>, 调用 <code>traverse(root->right)</code>, 即 <code>traverse(E)</code>, 于是 E 入栈</p></li></ol><p>&mldr;..</p><p>下面的代码能够完美的模拟递归遍历过程</p><pre><code>/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     struct TreeNode *left;
+ *     struct TreeNode *right;
+ * };
+ */
+
+struct TreeNode {
+    int val;
+    struct TreeNode *left;
+    struct TreeNode *right;
+};
+
+typedef struct stack {
+    void           *c;
+    struct stack   *next;
+} Stack;
+
+void create(Stack **ptop)
+{
+    *ptop = NULL;
+}
+
+void push(Stack **ptop, void *c)
+{
+    Stack   *tmp;
+
+    tmp = malloc(sizeof *tmp);
+    tmp-&gt;c = c;
+    tmp-&gt;next = *ptop;
+
+    *ptop = tmp;
+}
+
+void pop(Stack **ptop, void **c)
+{
+    Stack   *tmp;
+
+    if (! *ptop) return;
+
+    tmp = *ptop;
+    if (c) *c = tmp-&gt;c;
+    *ptop = (*ptop)-&gt;next;
+    free(tmp);
+}
+
+void top(Stack **ptop, void **c)
+{
+    *c = (*ptop)-&gt;c;
+}
+
+int empty(Stack **ptop)
+{
+   return *ptop == NULL; 
+}
+
+/**
+ * Return an array of size *returnSize.
+ * Note: The returned array must be malloced, assume caller calls free().
+ */
+int* postorderTraversal(struct TreeNode* root, int* returnSize)
+{
+    int             *arr;
+    long            mark;
+    Stack           *s;
+    Stack           *pc;
+    
+    create(&amp;s);
+    create(&amp;pc);
+    arr = malloc(10000 * sizeof *arr);
+    *returnSize = 0;
+    
+    push(&amp;s, root);
+    push(&amp;pc, 0);
+    while (!empty(&amp;s)) {
+        top(&amp;s, &amp;root);
+        
+        if (!root) {
+            pop(&amp;s, &amp;root);
+            pop(&amp;pc, &amp;mark);
+        } else {
+            pop(&amp;pc, &amp;mark);
+            
+            if (mark == 0) {
+                push(&amp;s, root-&gt;left);
+                push(&amp;pc, 1);
+                push(&amp;pc, 0);
+                arr[(*returnSize)++] = root-&gt;val;
+            } else if (mark == 1) {
+                push(&amp;s, root-&gt;right);
+                push(&amp;pc, 2);
+                push(&amp;pc, 0);
+            } else {
+                pop(&amp;s, &amp;root);
+            }
+        }
+
+    }
+    
+    return arr;
+}
+</code></pre><h2 id=不精确模拟>不精确模拟</h2><p>下面第二种方式是不精确的实现:</p><pre><code>void push_to_leftmost(Stack **s, struct TreeNode *root)
+{
+    while (root) {
+        push(s, root);
+        root = root-&gt;left;
+    }
+}
+
+/**
+ * Return an array of size *returnSize.
+ * Note: The returned array must be malloced, assume caller calls free().
+ */
+int* postorderTraversal(struct TreeNode* root, int* returnSize)
+{
+    int             *arr;
+    long            mark;
+    Stack           *s;
+    struct TreeNode *last;
+    
+    create(&amp;s);
+    arr = malloc(10000 * sizeof *arr);
+    *returnSize = 0;
+    last = NULL;
+    
+    push_to_leftmost(&amp;s, root);
+    while (!empty(&amp;s)) {
+        top(&amp;s, &amp;root);
+
+        if (!root-&gt;right || last == root-&gt;right) {
+            pop(&amp;s, NULL);
+            arr[(*returnSize)++] = root-&gt;val;
+            last = root;
+        } else {
+            /* arr[(*returnSize)++] = root-&gt;val; */
+            push_to_leftmost(&amp;s, root-&gt;right);
+        }
+    }
+    
+    return arr;
+}
+</code></pre><p>如果撇开对数据的访问单看遍历过程, 会发现每遍历到一个节点时, 这个节点都会被入两次栈, 出两次栈, 为什么呢? 因为每一次函数调用, 传参和被调函数内的局部变量都会被压栈, 而上面的 <code>traverse</code> 里递归调用了自己两次, 所以就有了如下第三种方法:</p><pre><code>/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     struct TreeNode *left;
+ *     struct TreeNode *right;
+ * };
+ */
+typedef struct stack {
+    void           *c;
+    struct stack   *next;
+} Stack;
+
+void create(Stack **ptop)
+{
+    *ptop = NULL;
+}
+
+void push(Stack **ptop, void *c)
+{
+    Stack   *tmp;
+
+    tmp = malloc(sizeof *tmp);
+    tmp-&gt;c = c;
+    tmp-&gt;next = *ptop;
+
+    *ptop = tmp;
+}
+
+void pop(Stack **ptop, void **c)
+{
+    Stack   *tmp;
+
+    if (! *ptop) return;
+
+    tmp = *ptop;
+    *c = tmp-&gt;c;
+    *ptop = (*ptop)-&gt;next;
+    //free(tmp);
+}
+
+int empty(Stack **ptop)
+{
+   return *ptop == NULL; 
+}
+
+#define PUSH_LEFT(s, root)      \
+    do {                        \
+        while (root) {          \
+            push(&amp;s, 0);        \
+            push(&amp;s, root);     \
+            root = root-&gt;left;  \
+        }                       \
+    } while (0)
+
+/**
+ * Return an array of size *returnSize.
+ * Note: The returned array must be malloced, assume caller calls free().
+ */
+int* postorderTraversal(struct TreeNode* root, int* returnSize)
+{
+    int             *arr;
+    long            mark;
+    Stack           *s;
+    
+    create(&amp;s);
+    arr = malloc(10000 * sizeof *arr);
+    *returnSize = 0;
+    
+    PUSH_LEFT(s, root);
+    while (!empty(&amp;s)) {
+        pop(&amp;s, &amp;root);
+        pop(&amp;s, &amp;mark);
+        
+        if (!mark) {
+            push(&amp;s, 1);
+            push(&amp;s, root);
+            root = root-&gt;right;
+            
+            PUSH_LEFT(s, root); 
+        } else {
+            arr[(*returnSize)++] = root-&gt;val;
+        }
+    }
+    
+    return arr;
+}
+</code></pre><h2 id=参考>参考</h2><p>这位作者的解法, 展示了另一种入栈出栈方式</p><p><a href=https://discuss.leetcode.com/topic/2917/accepted-code-explaination-with-algo>https://discuss.leetcode.com/topic/2917/accepted-code-explaination-with-algo</a></p></div><div class="row middle-xs"><div class=col-xs-12><div class=post-category><a href=/categories/algorithm/>Algorithm</a></div></div></div><div class=row><div class=col-xs-12></div></div><div style=height:50px></div><div class=post-comments><div id=disqus_thread></div><script>window.addEventListener("load",()=>{(function(){var a=document,b=a.createElement("script");b.src="https://justforfree.disqus.com/embed.js",b.setAttribute("data-timestamp",+new Date),(a.head||a.body).appendChild(b)})()})</script><noscript>Please enable JavaScript to view the
+<a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript></div><div class=site-footer></div></div></div></article><script></script></body></html>
