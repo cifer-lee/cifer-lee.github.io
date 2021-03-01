@@ -11,7 +11,20 @@ Rust 的 static 关键字和 C/C++ 语言一样, 代表变量的生命周期是�
 另外使用协程还有一个好处就是能够以看似同步的方式写异步的代码.
 协程实现 要实现协程就需要自己在线程中维护第二层栈空间 (第一层是线程自己的栈空间), 因为线程的切换内核会为我们将当前上下文 (主要是各个寄存器的值) 保存在线程栈空间中, 现在由于线程需要自己调度协程, 所以线程需要为每个协程维护栈空间, 好在协程切换时保存协程的上下文.
 这里需要线程能够获去到当前执行上下文, 很多操作系统内核会提供相应的系统调用, 实现方式其实也很简单就是写一段内嵌的汇编获取各个寄存器的值.
-在 C/C++ 中, setjmp/longjmp 帮我们完成了这个任务. 关于其 setjmp/longjmp 的实现原理, 这里有篇 Google 排名第一的文章 讲的很清楚. C/C++ 中实现协程当然也可以不借助 setjmp/longjmp 而自己去实现上下文的获取和维护, Google 可以搜到不少.</description></item><item><title>记一次 Indigo 与 Ryu 的连接建立问题</title><link>https://cifer97.github.io/posts/a-problem-ryu-indigo-conn-setup/</link><pubDate>Sun, 25 Dec 2016 16:03:13 +0000</pubDate><guid>https://cifer97.github.io/posts/a-problem-ryu-indigo-conn-setup/</guid><description>之前在研究 Indigo 和 Ryu 的衔接时碰到一个 OpenFlow 连接建立失败的问题, 特此记录下, 希望能够供别人参考.
+在 C/C++ 中, setjmp/longjmp 帮我们完成了这个任务. 关于其 setjmp/longjmp 的实现原理, 这里有篇 Google 排名第一的文章 讲的很清楚. C/C++ 中实现协程当然也可以不借助 setjmp/longjmp 而自己去实现上下文的获取和维护, Google 可以搜到不少.</description></item><item><title>2017 年终总结</title><link>https://cifer97.github.io/posts/year-in-review-2017/</link><pubDate>Mon, 01 Jan 2018 00:00:00 +0000</pubDate><guid>https://cifer97.github.io/posts/year-in-review-2017/</guid><description>学习 学会了使用 python 写简单的工具 从盛科辞职, 加入了滴滴 研究数字货币, 研究的很深. 投资了 HPB, BTS 和 STEEM 人生 结婚 在一沿海二线城市买了方, 买的时候已经不便宜了 浪费时间的瞎折腾 emacs, orgmode 为了使用 orgmode, 不得不学习折腾 emacs, 要是早点发现 onenote 就好了. 今后严格杜绝在这样的事情上浪费生命!</description></item><item><title>2016 年终总结</title><link>https://cifer97.github.io/posts/year-in-review-2016/</link><pubDate>Mon, 01 May 2017 00:00:00 +0000</pubDate><guid>https://cifer97.github.io/posts/year-in-review-2016/</guid><description>这是一篇拖了相当久的总结, 2016 年是我动荡不安的一年.
+辞职 首先是 6 月份的辞职, 这是我在 Y 工作整整三年来的辞职. 那个时候我的脑中存在着不知从哪听到的一个观念: 三年是一个阶段, 在一家公司工作满三年了就可以跳槽了. 现在回想这个观念实在是没什么道理, 当然如果仅仅是我脑子里存在这个观念, 那还不足以让我辞职的. 不说笑, 驱使我辞职的根本原因还真的就是 &amp;ldquo;世界那么大, 我想去看看&amp;rdquo;. 于我而言, 这句话包含了两层含义, 一是我对工作现状的疲乏, 二是我对外面世界的憧憬.
+当时在很长一段时间里, 我的工作是千篇一律的: 不断的为一些变来变去的, 无关痛痒的需求修改代码. 这些工作既繁琐, 又不存在技术壁垒, 久而久之我对这些工作产生了强烈的厌烦感, 我甚至觉得, 嵌入式领域我已经做到头了, 再继续做下去对我也不会有本质的提升, 关于这一点我后来更是坚信不疑.
+另外, 从大学算起, 在青岛这个二线城市待了 7 年, 在嵌入式领域做了将近 3 年的我, 对外面更发达的城市, 对于外界的各个未知的领域都充满了渴望和幻想. 我想这才是导致我坚定的辞职的根本原因, 年轻的时候不出去, 什么时候出去呢?
+总之辞职是一定的了, 但是在这次辞职的过程中, 暴露出了几个让我现在回想起来都遗憾万分的问题.
+首先就是与上级的沟通太少, 这是我这三年里犯得非常严重的一个错误. 公司的同事, 尤其是上级, 在我们的职业生涯中是非常优质的资源, 如果我能利用好这些资源的话, 那么我的职业生涯必定会少走很多弯路, 然而整个在 Y 的三年我都没有重视这些资源. 在我离开 Y 的时候, 我与公司绝大部分同事甚至老板的关系都是很普通的, 这不应该是一个在公司待了三年的老员工的样子.
+而且正是由于沟通太少, 我没有想到的是, 在我提辞职的那几天, 上级同时也在计划给我 promotion, 遗憾的是我先于上级的 promotion 提出了辞职, 后面的事情就比较尴尬了.</description></item><item><title>写在入职滴滴的前夕</title><link>https://cifer97.github.io/posts/acquired-by-didi/</link><pubDate>Mon, 20 Mar 2017 00:00:00 +0000</pubDate><guid>https://cifer97.github.io/posts/acquired-by-didi/</guid><description>明天 (3.21) 就正式入职滴滴了, 这对我来说是非常值得开心的, 然而我这些天却越发的感觉到几丝迷茫.
+现在想想, 从上了大学起, 我精神就一直处于一个懒散的状态, 整个大学里没有一点危机意识, 没有去思考我该做什么, 想要什么, 也没有去思考将来要成为什么样的人. 懒散到专业被调剂了也毫不在意的接受, 不去反抗不去挣取.
+虽然大学的时候没有少看编程方面的书, 以后做程序员的决心也一直没有改变过, 但是我也仅仅只是心里一直告诉自己 &amp;ldquo;以后要成为出色的程序员&amp;rdquo; 罢了, 至于怎样才能成为, 成为了之后又怎样, 我没有过多思考过, 只是就一味的看书, 像无头苍蝇一样, 没有方向, 没有侧重. 现在想起来, 当是真的是浪费了太多的时间, 导致自己事倍功半.
+整个大学时期, 我存在非常严重的几个问题:
+认为专业被调到化学无所谓, 认为我靠自学计算机也能学得很好
+事实上, 失去了计算机专业的学习环境, 教授环境, 没有前辈的引导, 我对于整个计算机生态体系缺乏系统的认识, 导致了我方向不清, 不能明确自己想要的是什么.
+这导致的后果就是我在大学中, 几乎所有的计算机技术书籍都看过, 但是没有一项为我所熟练掌握, 我看过学过的内容过有计算机组成原理, 汇编, C/C++, MFC, Visual C++, Java, j2ee, php, mysql, oracle, flash 动画, html/javascript/css web 前端, android 开发, C#/.Net 开发等等. 但是看这些书时我是迷茫的没有方向的, 我甚至不知道为什么要看这些书, 看完之后能做什么.
+闭门造车, 没有和其他人多多沟通</description></item><item><title>记一次 Indigo 与 Ryu 的连接建立问题</title><link>https://cifer97.github.io/posts/a-problem-ryu-indigo-conn-setup/</link><pubDate>Sun, 25 Dec 2016 16:03:13 +0000</pubDate><guid>https://cifer97.github.io/posts/a-problem-ryu-indigo-conn-setup/</guid><description>之前在研究 Indigo 和 Ryu 的衔接时碰到一个 OpenFlow 连接建立失败的问题, 特此记录下, 希望能够供别人参考.
 在了解这个问题之前, 我们先回顾一下 OpenFlow 连接建立过程.
 OpenFlow 协议的连接建立过程 根据 OpenFlow 协议标准的陈述我们能够知道, 交换机和控制器之间使用 TCP (或者 SSL) 传输协议, 交换机必须能够主动发起连接 (实际应用中, 连接一般都是都由交换机主动发起), 另外就是所有的 OpenFlow 消息, 都要用网络序 (大端序) 发送 (参见 OpenFlow Spec v1.3 以及 v1.4 的第 7 章)
 TCP 连接的建立我们很熟悉了, 就是典型的三此握手过程. 在 TCP 连接建立以后, 交换机和控制器双方在 TCP 连接建立后需要立即发送给 OF_HELLO 消息给对方, 并且 OF_HELLO 必须是双发发送给对方的第一个消息, OF_HELLO 消息同时起到协商 OpenFlow 版本的功能.
