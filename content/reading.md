@@ -1,14 +1,12 @@
 ---
 title: 书单
-slug: books
-date: 2016-07-25
 ---
 
 # 2021
 
 - [ ] New Concept English 3
 - [x] 经济学原理 - 曼昆
-- [ ] 聪明的投资者 - 格雷厄姆, <small>价值投资的鼻祖</small>
+- [ ] 聪明的投资者 - 格雷厄姆, <small>价值投资的鼻祖, [笔记](/posts/the-intelligent-investor-notes)</small>
 - [ ] 伯克希尔年报 - 巴菲特
 - [ ] 资本回报 - 马拉松基金
 
