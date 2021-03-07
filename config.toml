@@ -34,7 +34,7 @@ disqus = "justforfree" # disqus account name
 
 [[params.socials]]
 name = "Books"
-link = "/books"
+link = "/reading"
 [[params.socials]]
 name = "Investing"
 link = "/investingrule"
