@@ -39,5 +39,8 @@ link = "/reading"
 name = "Investing"
 link = "/investingrule"
 [[params.socials]]
+name = "Skills"
+link = "/eight-part-essay"
+[[params.socials]]
 name = "Github"
 link = "https://github.com/cifer76"

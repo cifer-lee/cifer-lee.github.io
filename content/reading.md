@@ -4,7 +4,7 @@ title: 书单
 
 # 2021
 
-- [ ] [聪明的投资者 - 格雷厄姆](/posts/the-intelligent-investor-notes), <small>价值投资的鼻祖</small>
+- [ ] [聪明的投资者 - 格雷厄姆](/reading-notes/the-intelligent-investor-notes), <small>价值投资的鼻祖</small>
 - [ ] 一本书读懂财报 - 肖星, <small>非财务专业读者值得反复看几遍</small>
 - [ ] 伯克希尔年报 - 巴菲特
 - [ ] 资本回报 - 马拉松基金
@@ -21,7 +21,7 @@ title: 书单
 
 # 2018
 
-- [ ] [国富论](/posts/the-wealth-of-nations-notes) - 亚当斯密
+- [ ] [国富论](/reading-notes/the-wealth-of-nations-notes) - 亚当斯密
 
 # 2017 and earlier
 
