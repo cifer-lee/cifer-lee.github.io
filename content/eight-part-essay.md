@@ -54,6 +54,7 @@
 * Connection termination: four-way handshake
 * why TIME_WAIT?
 * sliding window
+* MSS negotiation
 
 ### IPC (Inter-process communication)
 
@@ -65,7 +66,7 @@
 
 ### epoll
 
-* differences with `select`
+* differences with `select` and `poll`
 
 ### Process profling
 
@@ -79,7 +80,7 @@
 
 * HTTP protocol
   * what the meanings of 1xx/2xx/3xx/4xx/5xx
-  * How to determine a http response ended (https://blog.csdn.net/gaoyingju/article/details/9223979)
+  * How to determine a http response's ending (https://blog.csdn.net/gaoyingju/article/details/9223979)
     * Content-length
     * server closes the tcp connection
     * 1xx, 204, 304 response has no body
