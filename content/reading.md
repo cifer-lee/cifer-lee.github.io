@@ -5,7 +5,8 @@ title: 书单
 # 2021
 
 - [ ] [聪明的投资者 - 格雷厄姆](/reading-notes/the-intelligent-investor-notes), <small>价值投资的鼻祖</small>
-- [ ] 一本书读懂财报 - 肖星, <small>非财务专业读者值得反复看几遍</small>
+- [x] 一本书读懂财报 - 肖星, <small>非财务专业读者值得反复看几遍</small>
+- [ ] 穷查理宝典 - 查理·芒格
 - [ ] 伯克希尔年报 - 巴菲特
 - [ ] 资本回报 - 马拉松基金
 

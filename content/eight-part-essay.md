@@ -93,7 +93,7 @@
   * How nginx workarounds the `TIME_WAIT` state during restart without being blocked by `TIME_WAIT` connections. i.e. smooth restart.
   * How nginx workers listen the same ip:port?
     * 内核 reuse_port 出来以前: https://stackoverflow.com/questions/670891/is-there-a-way-for-multiple-processes-to-share-a-listening-socket
-    * 内核 reuse_port 出来以后: https://www.nginx.com/blog/socket-sharding-nginx-release-1-9-1/)
+    * 内核 reuse_port 出来以后: https://www.nginx.com/blog/socket-sharding-nginx-release-1-9-1/
 * PHP
   * Internals
     * Autoload
@@ -135,9 +135,9 @@
 
     > *一次级索引包含了两次查找。一次是查找次级索引自身。然后查找主键（聚集索引）*
 
-    - InnoDB (实现为聚集索引,     支持事务, 支持行级锁)
-    - MyISAM (非聚集索引,     支持全文索引, 只支持表级锁)
-    - 不要使用存储过程, 外键,     触发器. [滴滴的 mysql 存储规范](onenote:编程.one#滴滴的 mysql 存储规范&section-id={A9A445F6-738E-0C42-8C57-5627B99B856D}&page-id={BABCC1A7-BD61-9849-A381-EFF382B4534C}&end&base-path=https://d.docs.live.net/2850108539a65c50/文档/Cifer 的笔记本)
+    - InnoDB (实现为聚集索引, 支持事务, 支持行级锁)
+    - MyISAM (非聚集索引, 支持全文索引, 只支持表级锁)
+    - 不要使用存储过程, 外键, 触发器. [滴滴的 mysql 存储规范](onenote:编程.one#滴滴的 mysql 存储规范&section-id={A9A445F6-738E-0C42-8C57-5627B99B856D}&page-id={BABCC1A7-BD61-9849-A381-EFF382B4534C}&end&base-path=https://d.docs.live.net/2850108539a65c50/文档/Cifer 的笔记本)
 
 * Performance
 
@@ -167,19 +167,17 @@
 ### redis
 
 * Basics, data structures
-
   * String
-
   * List
   * Set
   * Hmget / Hmset
-
-* redis 的两种持久化方式。 快照方式如何实现？假如做快照时有个耗时 5s 的写操作，快照是做 5s 前的还是 5s 后的？5s 前的话怎么做 ？要把5s前的内容拷贝一份以防止耗时操作把内容修改了吗？（答案是 5s 前，用写时拷贝原则）
-
+* redis 的两种持久化方式. 快照方式如何实现? 假如做快照时有个耗时 5s 的写操作, 快照是做 5s 前的还是 5s 后的? 5s 前的话怎么做? 要把5s前的内容拷贝一份以防止耗时操作把内容修改了吗? (答案是 5s 前，用写时拷贝原则)
+  * AOF 刷写模式:
+    * appendfsync always, 每次收到写命令就立即强制写入磁盘，是最有保证的完全的持久化，但速度也是最慢的, 一般不推荐使用.
+    * appendfsync everysec, 每秒钟强制写入磁盘一次，在性能和持久化方面做了很好的折中，是受推荐的方式。
+    * appendfsync no, 完全依赖OS的写入，一般为30秒左右一次，性能最好但是持久化最没有保证，不被推荐
 * Cluster
-
   * https://redis.io/topics/cluster-spec
-
 * Redlock (Distributed locks with Redis)
 
 ## Message Queue
