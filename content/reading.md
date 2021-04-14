@@ -2,6 +2,10 @@
 title: 书单
 ---
 
+# 常用资源
+
+* 银行家杂志 *[Top 1000 World Bank](https://www.thebanker.com/Top-1000)*
+
 # 2021
 
 - [x] [聪明的投资者 - 格雷厄姆](/reading-notes/the-intelligent-investor-notes), <small>价值投资的鼻祖</small>
@@ -10,6 +14,7 @@ title: 书单
 - [ ] 伯克希尔年报 - 巴菲特
 - [ ] [价值](/reading-notes/jiazhi.md) - 张磊
 - [ ] 资本回报 - 马拉松基金
+- [x] 手把手教你读财报2 - 18节课看透银行业
 
 # 2020
 
@@ -32,4 +37,3 @@ title: 书单
 - [x] *Expert C Programming, Deep Secrets*
 - [x] *See MIPS Run, 2nd edition*, <small>少有的将处理器架构和操作系统结合起来讲的书, 而且作者的写作思想和我完全一致, 绝世好书!</small>
 - [x] *Using the FreeRTOS Real Time Kernel - Standard Edition*, <small>FreeRTOS 是一个实现非常精炼和优雅的实时操作系统内核, 这本官方的小书为我们展现了 FreeRTOS 内核的优美. 针对不同的处理器这本书都有不同的版本, 但对于只是了解 FreeRTOS 而不必学习 FreeRTOS 针对不同平台的差异时, "Standard Edition" 足矣.</small>
-
