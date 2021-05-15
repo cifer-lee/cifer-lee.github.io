@@ -1,7 +1,19 @@
 baseURL = "https://cifer97.github.io"
 languageCode = "zh-CN"
 title = "编程笔记"
-theme = "yinyang"
+theme = "zozo"
+
+hasCJKLanguage = true                  # has chinese/japanese/korean ?  # 自动检测是否包含 中文\日文\韩文
+summaryLength = 100
+paginate = 4                           # shows the number of articles   # 首页显示文章数量
+enableEmoji = true
+googleAnalytics = ""                   # your google analytics id       # Google统计代码
+disqusShortname = ""                   # your discuss shortname         # Disqus评论系统代码
+
+pygmentsUseClasses = true
+pygmentCodeFences = true
+pygmentscodefencesguesssyntax = true
+
 
 [markup]
   [markup.goldmark]
