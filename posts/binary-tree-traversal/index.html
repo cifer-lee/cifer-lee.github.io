@@ -1,4 +1,4 @@
-<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="IE=edge"><title>二叉树递归遍历的本质以及用迭代遍历精确模拟递归遍历</title><link rel=stylesheet href=/css/style.css></head><body><header><a href=https://cifer97.github.io>编程笔记</a></header><main><article><h1>二叉树递归遍历的本质以及用迭代遍历精确模拟递归遍历</h1><time>2016.22.10</time><div><p>递归遍历是实现深度优先遍历的既直观又简单的方式, 二叉树递归遍历的本质其实就是在不断的压栈与出栈, 明白了这一道理之后就很容易借助栈结构来将递归遍历转换成迭代遍历.</p><pre><code>void traverse(struct TreeNode *root)
+<!doctype html><html data-theme=sepia lang=zh-cn><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="IE=edge"><title>二叉树递归遍历的本质以及用迭代遍历精确模拟递归遍历</title><link rel=stylesheet href=/css/style.css></head><body><header><h1><a href=https://cifer97.github.io>编程笔记</a></h1></header><main><article><h1>二叉树递归遍历的本质以及用迭代遍历精确模拟递归遍历</h1><div><p><time>2016.22.10</time></p></div><div><p>递归遍历是实现深度优先遍历的既直观又简单的方式, 二叉树递归遍历的本质其实就是在不断的压栈与出栈, 明白了这一道理之后就很容易借助栈结构来将递归遍历转换成迭代遍历.</p><pre><code>void traverse(struct TreeNode *root)
 {
     if (root) {
         /* 1 */
