@@ -1,7 +1,7 @@
 baseURL = "https://cifer97.github.io"
 languageCode = "zh-CN"
 title = "编程笔记"
-theme = "zozo"
+theme = "blank"
 
 hasCJKLanguage = true                  # has chinese/japanese/korean ?  # 自动检测是否包含 中文\日文\韩文
 summaryLength = 100
