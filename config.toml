@@ -1,48 +1,36 @@
-baseURL = "https://cifer97.github.io"
+baseURL = "/"
 languageCode = "zh-CN"
-title = "编程笔记"
+title = "狂想曲"
 theme = "mainroad"
 
-hasCJKLanguage = true                  # has chinese/japanese/korean ?  # 自动检测是否包含 中文\日文\韩文
-summaryLength = 100
-paginate = 50                           # shows the number of articles   # 首页显示文章数量
-enableEmoji = true
+paginate = 10                           # shows the number of articles   # 首页显示文章数量
+
 googleAnalytics = ""                   # your google analytics id       # Google统计代码
-disqusShortname = ""                   # your discuss shortname         # Disqus评论系统代码
-
-pygmentsUseClasses = true
-pygmentCodeFences = true
-pygmentscodefencesguesssyntax = true
-
-
-[markup]
-  [markup.goldmark]
-    [markup.goldmark.renderer]
-      unsafe = true
-  [markup.highlight]
-    guessSyntax = true
-    noClasses = true
-    style = "bw"
-    tabWidth = 2
+disqusShortname = "justforfree"        # your discuss shortname         # Disqus评论系统代码
 
 [author]
   name = "Cifer"
   homepage = "https://cifer76.github.io/"
 
-#[languages]
-#  [languages.en]
-#    contentDir = "content/en"
-#    languageName = "English"
-#    weight = 2
-#  [languages.cn]
-#    contentDir = "content/cn"
-#    languageName = "Chinese"
-#    weight = 1
+[params.sidebar]
+  home = "right" # Configure layout for home page
+  list = "right"  # Configure layout for list pages
+  single = false # Configure layout for single pages
+  # Enable widgets in given order
+  #widgets = ["search", "recent", "categories", "taglist", "social", "languages"]
+  # alternatively "ddg-search" can be used, to search via DuckDuckGo
+  widgets = ["ddg-search", "recent", "categories", "taglist", "social", "languages"]
 
-[params]
-headTitle = "编程笔记"
-mainSections = ["posts"]
-disqus = "justforfree" # disqus account name
+[params.widgets]
+  recent_num = 5 # Set the number of articles in the "Recent articles" widget
+  categories_counter = true # Enable counter for each category in "Categories" widget
+  tags_counter = false # Enable counter for each tag in "Tags" widget
+
+[params.widgets.social]
+  # Enable parts of social widget
+  twitter = "0x76i"
+  github = "cifer76"
+  email = "mantianyu@gmail.com"
 
 [[params.socials]]
 name = "Books"
