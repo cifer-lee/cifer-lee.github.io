@@ -1,16 +1,20 @@
 baseURL = "/"
 languageCode = "zh-CN"
-title = "狂想曲"
 theme = "mainroad"
 
-paginate = 10                           # shows the number of articles   # 首页显示文章数量
+paginate = 10                          # shows the number of articles   # 首页显示文章数量
 
-googleAnalytics = ""                   # your google analytics id       # Google统计代码
+googleAnalytics = "UA-48551763-1"      # your google analytics id       # Google统计代码
 disqusShortname = "justforfree"        # your discuss shortname         # Disqus评论系统代码
 
 [author]
   name = "Cifer"
   homepage = "https://cifer76.github.io/"
+
+[params.logo]
+  image = "logo.png" # Logo image. Path relative to "static"
+  title = "狂想曲" # Logo title, otherwise will use site title
+  subtitle = "勇敢的灵魂追寻本我" # Logo subtitle
 
 [params.sidebar]
   home = "right" # Configure layout for home page
