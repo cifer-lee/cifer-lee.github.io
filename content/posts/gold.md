@@ -39,7 +39,7 @@ mathjax: true # Enable MathJax for specific page
 
 ### Ounce and Troy Ounce
 
-1 Troy Ounce == 31 grams
+1 Troy Ounce == 31 grams == 0.031 kilo grams == 0.000031 ton
 1 Ounce == 28 grams
 
 When measuring precious metal we always use troy ounce.
@@ -56,7 +56,7 @@ or
 
 > The best estimates currently available suggest that around 197,576 tonnes of gold has been mined throughout history, of which around two-thirds has been mined since 1950. And since gold is virtually indestructible, this means that almost all of this metal is still around in one form or another. If every single ounce of this gold were placed next to each other, the resulting cube of pure gold would only measure around 21 metres on each side.[2]
 
-The quote states the data by end of 2019, according to the density of gold, 197,576 tonnes corresponds to a 21.7 metre sides cube.
+The quote states the data by end of 2019, according to the density of gold, **197,576** tonnes corresponds to a 21.7 metre sides cube.
 
 ## Wait, are you saying all of the golds we have mined only fit a 21.7 metre sides cube?
 
@@ -66,14 +66,14 @@ Yes, 21.7 metre sides cube is roughly equal to 3 olympic standard pools, I could
 
 > Each year, global gold mining adds approximately 2,500-3,000 tonnes to the overall above-ground stock of gold. While gold production has shown an upward trend in recent years, this is likely to level off in coming years.
 
-## Who are mining the gold now?
+## Top gold mines and who are mining them now?
 
 
 ## How much gold is still left there to be mined?
 
 There are two aspects for this question.
 
-The first is that the gold deposits that have already been discovered by the above companies are still being mined, if you remember we have mentioned at the begining that the average grade of a gold mine is just 1.01g/ton, which means mining a ton of ore only gets 1.01 gram of gold. So a gold deposit costs decades to be carven out.
+The first is that the gold deposits that have already been discovered by the above companies are still being mined, if you remember we have mentioned at the begining that the average grade of a gold mine is just 1.01g/ton, which means mining a ton of ore only gets 1.01 gram of gold. So a gold deposit costs decades to be carven out. A widely accepted estimation is that there are still **~50,000** tonnes of gold scattered around all of the deposits to be mined.
 
 And the second point is as describe below which quotes from Ref4
 
@@ -83,13 +83,21 @@ And the second point is as describe below which quotes from Ref4
 >
 > There is also a considerable amount of gold that cannot be collected profitably scattered throughout the world’s oceans. Much of these underwater deposits are contained within the ocean floor and floating as tiny particles in the seawater itself.
 
+## Top gold producing countries
+
+1. China
+2. 
+
+## Why China is able to become the largest gold producer country without a big gold mine?
+
+The gold production of China surpasses South Africa in 2007 till now(latest world data comes out to 2019).
+
 ## Orgnizations
 
 ### World Gold Council
 
 Official site: gold.org
 Brief: https://en.wikipedia.org/wiki/World_Gold_Council
-
 
 ## References
 
