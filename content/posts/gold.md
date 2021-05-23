@@ -1,8 +1,8 @@
 ---
 # Common-Defined params
-title: "Gold"
+title: "Gold Mining"
 date: "2021-05-21"
-description: "Example article description"
+description: "Gold minning"
 categories:
   - "Investment"
 tags:
@@ -10,8 +10,8 @@ tags:
 # menu: main # Optional, add page to a menu. Options: main, side, footer
 
 # Theme-Defined params
-thumbnail: "img/placeholder.jpg" # Thumbnail image
-lead: "Example lead - highlighted near the title" # Lead text
+#thumbnail: "img/placeholder.jpg" # Thumbnail image
+#lead: "Example lead - highlighted near the title" # Lead text
 comments: true # Enable Disqus comments for specific page
 authorbox: true # Enable authorbox for specific page
 pager: true # Enable pager navigation (prev/next) for specific page
