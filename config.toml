@@ -22,6 +22,7 @@ disqusShortname = "justforfree"        # your discuss shortname         # Disqus
   toc = true # Enable Table of Contents
   pager = true # Show pager navigation (prev/next links) at the bottom of pages if true
   post_meta = ["date", "categories", "translations"] # Order of post meta information
+  comments = true
   mainSections = ["posts"] # Specify section pages to show on home page and the "Recent articles" widget
   dateformat = "2006-01-02" # Change the format of dates
   mathjax = true # Enable MathJax

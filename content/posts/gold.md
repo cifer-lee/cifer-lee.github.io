@@ -11,12 +11,7 @@ tags:
 
 # Theme-Defined params
 #thumbnail: "img/placeholder.jpg" # Thumbnail image
-#lead: "Example lead - highlighted near the title" # Lead text
-comments: true # Enable Disqus comments for specific page
-authorbox: true # Enable authorbox for specific page
-pager: true # Enable pager navigation (prev/next) for specific page
-toc: true # Enable Table of Contents for specific page
-mathjax: true # Enable MathJax for specific page
+#lead: "Gold grade is a term used in gold mining, and should be used as a measure of the quality of gold ore – that is the raw material obtained from mining." # Lead text
 ---
 
 ## Relating concepts
