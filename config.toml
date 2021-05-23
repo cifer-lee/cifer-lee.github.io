@@ -11,6 +11,23 @@ disqusShortname = "justforfree"        # your discuss shortname         # Disqus
   name = "Cifer"
   homepage = "https://cifer76.github.io/"
 
+[params]
+  description = "Cifer's Personal blog about everything" # Site description. Used in meta description
+  copyright = "Cifer" # Footer copyright holder, otherwise will use site title
+  opengraph = true # Enable OpenGraph if true
+  schema = true # Enable Schema
+  twitter_cards = false # Enable Twitter Cards if true
+  readmore = true # Show "Read more" button in list if true
+  authorbox = true # Show authorbox at bottom of pages if true
+  toc = true # Enable Table of Contents
+  pager = true # Show pager navigation (prev/next links) at the bottom of pages if true
+  post_meta = ["date", "categories", "translations"] # Order of post meta information
+  mainSections = ["posts"] # Specify section pages to show on home page and the "Recent articles" widget
+  dateformat = "2006-01-02" # Change the format of dates
+  mathjax = true # Enable MathJax
+  mathjaxPath = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js" # Specify MathJax path
+  mathjaxConfig = "TeX-AMS-MML_HTMLorMML" # Specify MathJax config
+
 [params.logo]
   image = "logo.png" # Logo image. Path relative to "static"
   title = "狂想曲" # Logo title, otherwise will use site title

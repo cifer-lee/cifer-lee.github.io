@@ -1,5 +1,7 @@
 ---
-title: 投资理念
+title: "投资理念"
+menu: main # Optional, add page to a menu. Options: main, side, footer
+toc: false
 ---
 
 # 如何选择企业

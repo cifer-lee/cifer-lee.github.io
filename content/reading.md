@@ -1,5 +1,7 @@
 ---
 title: 书单
+menu: main # Optional, add page to a menu. Options: main, side, footer
+toc: false
 ---
 
 # 常用资源
@@ -10,6 +12,7 @@ title: 书单
 
 - [x] [聪明的投资者 - 格雷厄姆](/reading-notes/the-intelligent-investor-notes), <small>价值投资的鼻祖</small>
 - [x] 一本书读懂财报 - 肖星, <small>非财务专业读者值得反复看几遍</small>
+- [x] 中央银行与货币供给 - 盛松成
 - [ ] [穷查理宝典 - 查理·芒格智慧箴言录](/reading-notes/poor-charlies-almanack-notes) - 彼得·考夫曼
 - [ ] 伯克希尔年报 - 巴菲特
 - [ ] [价值](/reading-notes/jiazhi.md) - 张磊
