@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>PRNG on</title><link>/tags/prng/</link><description>Recent content in PRNG on</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sun, 09 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="/tags/prng/index.xml" rel="self" type="application/rss+xml"/><item><title>随机数与伪随机数生成器</title><link>/posts/prng/</link><pubDate>Sun, 09 May 2021 00:00:00 +0000</pubDate><guid>/posts/prng/</guid><description>想必我们都知道随机数和伪随机数的说法, 但是未必真能说清楚他们二者的区别, 只是隐约的知道伪随机数不是真正的随机数, 但是再往深了说就说不清了. 那今天我们就来深入的研究一下二者的区别.
+什么是随机数? 起笔时我才发现还真是很难给出随机数的定义, 于是我搜索了一番, 发现不仅 Google 没有答案, 连我参考的两本密码学的名著也没有明确定义. 奈何这一段的标题都写出来了, 所以我苦思了好几分钟, 认为这一定义还是比较不错的:
+不确定的数.
+这背后延伸的意思就是, “不被安排” “不是遵循某个规则产生”, 这个定义和英文单词 &amp;ldquo;random&amp;rdquo; 的释义有着异曲同工之妙:
+“确定” 和 “不确定” 在物理世界中都是广泛存在的, 比如抛出的硬币确定会落地, 但是哪面朝上就不确定了. 但是对计算机来说, “不确定” 却是不存在的, 因为数学一定是确定的, 计算机就是数学, 计算机里的程序, 算法, 对于确定的输入, 一定会得到确定的输出. 如何让计算机输出不确定的结果? 那就是把外界的不确定作为计算机的输入.
+物理世界中的不确定也就是我们所说的真随机(TRNG).
+伪随机 由于真随机来自于计算机外部, 获得的代价往往较高, 而在计算机的应用场景中我们也并不总是要求随机数都有真随机那么高的不确定性, 所以这就衍生出了对伪随机的需求. 伪随机由算法产生, 设计良好的算法产生的随机序列能够以假乱真, 产生伪随机数的算法被叫做伪随机数生成器.
+伪随机数生成器通常接受一个 seed 用来初始化生成器的初始状态, 后面会看到, 这个 seed 在某些情况下是必须提供的, 在另外一些情况下可以不提供, 但即使是在不需要提供的情况下, 提供 seed 仍然是较好的工程实践[^1].
+随机的三重等级 业界特别是密码学领域将随机分为三个级别:
+伪随机 (PRNG) 密码学安全的伪随机 (CSPRNG) 真随机 (TRNG) 伪随机 (PRNG) Pseudo-random number generator</description></item></channel></rss>

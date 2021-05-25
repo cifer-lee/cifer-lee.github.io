@@ -7,7 +7,7 @@ Supercookie Supercookie 应该是一个统称，不同于普通的 cookie，supe
 于是 CGI 出现了, 它使得 web server 可以把复杂的业务逻辑交给 cgi 脚本程序来做, CGI 协议定义了 web server 与 cgi 程序之间通信的 context, web server 一收到动态资源的请求就 fork 一个子进程调用 cgi 程序处理这个请求, 同时将和此请求相关的 context 传给 cgi 程序, 像是 path_info, script path, request method, remote ip 等等&mldr;
 但是显然每次来个请求 web server 就去 fork 子进程是很低效的, 在网站访问量逐渐增大时网站性能问题日益凸显.</div><div class="list__footer clearfix"><a class="list__footer-readmore btn" href=/posts/cgi-fastcgi-php-fpm/>Read more…</a></div></article></main></div><aside class=sidebar><div class="widget-search widget"><form class=widget-search__form role=search method=get action=https://google.com/search><label><input class=widget-search__field type=search placeholder=SEARCH… name=q aria-label=SEARCH…></label>
 <input class=widget-search__submit type=submit value=Search>
-<input type=hidden name=sitesearch value=/></form></div><div class="widget-recent widget"><h4 class=widget__title>Recent Posts</h4><div class=widget__content><ul class=widget__list><li class=widget__item><a class=widget__link href=/posts/anaerobic-aerobic-exercise/>有氧运动和无氧运动的区别</a></li><li class=widget__item><a class=widget__link href=/posts/gold/>Gold Mining</a></li><li class=widget__item><a class=widget__link href=/posts/ethereum-smart-contract-quickstart/>以太坊智能合约快速上手</a></li><li class=widget__item><a class=widget__link href=/posts/year-in-review-2020/>2020 年终总结</a></li><li class=widget__item><a class=widget__link href=/posts/rust-singleton/>Rust 里的单例模式</a></li></ul></div></div><div class="widget-categories widget"><h4 class=widget__title>Categories</h4><div class=widget__content><ul class=widget__list><li class=widget__item><a class=widget__link href=/categories/algorithm/>Algorithm</a>&nbsp;
+<input type=hidden name=sitesearch value=/></form></div><div class="widget-recent widget"><h4 class=widget__title>Recent Posts</h4><div class=widget__content><ul class=widget__list><li class=widget__item><a class=widget__link href=/posts/anaerobic-aerobic-exercise/>有氧运动和无氧运动的区别</a></li><li class=widget__item><a class=widget__link href=/posts/gold/>Gold Mining</a></li><li class=widget__item><a class=widget__link href=/posts/ethereum-smart-contract-quickstart/>以太坊智能合约快速上手</a></li><li class=widget__item><a class=widget__link href=/posts/prng/>随机数与伪随机数生成器</a></li><li class=widget__item><a class=widget__link href=/posts/year-in-review-2020/>2020 年终总结</a></li></ul></div></div><div class="widget-categories widget"><h4 class=widget__title>Categories</h4><div class=widget__content><ul class=widget__list><li class=widget__item><a class=widget__link href=/categories/algorithm/>Algorithm</a>&nbsp;
 <span class="widget__counter widget__counter--bubble">1</span></li><li class=widget__item><a class=widget__link href=/categories/bitcoin/>Bitcoin</a>&nbsp;
 <span class="widget__counter widget__counter--bubble">7</span></li><li class=widget__item><a class=widget__link href=/categories/blockchain/>Blockchain</a>&nbsp;
 <span class="widget__counter widget__counter--bubble">5</span></li><li class=widget__item><a class=widget__link href=/categories/c/>C</a>&nbsp;
@@ -19,7 +19,7 @@ Supercookie Supercookie 应该是一个统称，不同于普通的 cookie，supe
 <span class="widget__counter widget__counter--bubble">3</span></li><li class=widget__item><a class=widget__link href=/categories/nginx/>Nginx</a>&nbsp;
 <span class="widget__counter widget__counter--bubble">1</span></li><li class=widget__item><a class=widget__link href=/categories/php/>PHP</a>&nbsp;
 <span class="widget__counter widget__counter--bubble">1</span></li><li class=widget__item><a class=widget__link href=/categories/programming/>Programming</a>&nbsp;
-<span class="widget__counter widget__counter--bubble">6</span></li><li class=widget__item><a class=widget__link href=/categories/python/>Python</a>&nbsp;
+<span class="widget__counter widget__counter--bubble">7</span></li><li class=widget__item><a class=widget__link href=/categories/python/>Python</a>&nbsp;
 <span class="widget__counter widget__counter--bubble">1</span></li><li class=widget__item><a class=widget__link href=/categories/reading/>Reading</a>&nbsp;
 <span class="widget__counter widget__counter--bubble">3</span></li><li class=widget__item><a class=widget__link href=/categories/redis/>Redis</a>&nbsp;
 <span class="widget__counter widget__counter--bubble">1</span></li><li class=widget__item><a class=widget__link href=/categories/rust/>Rust</a>&nbsp;
@@ -58,6 +58,7 @@ Supercookie Supercookie 应该是一个统称，不同于普通的 cookie，supe
 <a class="widget-taglist__link widget__link btn" href=/tags/pathinfo/ title=pathinfo>pathinfo</a>
 <a class="widget-taglist__link widget__link btn" href=/tags/php/ title=php>php</a>
 <a class="widget-taglist__link widget__link btn" href=/tags/privacy/ title=privacy>privacy</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/prng/ title=PRNG>PRNG</a>
 <a class="widget-taglist__link widget__link btn" href=/tags/programming/ title=programming>programming</a>
 <a class="widget-taglist__link widget__link btn" href=/tags/redis/ title=redis>redis</a>
 <a class="widget-taglist__link widget__link btn" href=/tags/rhel/ title=rhel>rhel</a>
