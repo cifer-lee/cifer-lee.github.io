@@ -1,11 +1,20 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Programming on</title><link>/categories/programming/</link><description>Recent content in Programming on</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sun, 09 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="/categories/programming/index.xml" rel="self" type="application/rss+xml"/><item><title>随机数与伪随机数生成器</title><link>/posts/prng/</link><pubDate>Sun, 09 May 2021 00:00:00 +0000</pubDate><guid>/posts/prng/</guid><description>想必我们都知道随机数和伪随机数的说法, 但是未必真能说清楚他们二者的区别, 只是隐约的知道伪随机数不是真正的随机数, 但是再往深了说就说不清了. 那今天我们就来深入的研究一下二者的区别.
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Programming on</title><link>/categories/programming/</link><description>Recent content in Programming on</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Mon, 10 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="/categories/programming/index.xml" rel="self" type="application/rss+xml"/><item><title>CSPRNG 如何做到不可预测</title><link>/posts/csprng/</link><pubDate>Mon, 10 May 2021 00:00:00 +0000</pubDate><guid>/posts/csprng/</guid><description>上一篇文章 我们提到了实现伪随机数生成器 PRNG 的一种经典算法: 线性同余法. 我们也提到了线性同余法由于无法做到不可预测而不能成为密码学安全的算法, 如果对其加以改进使做到不可预测，我们就能够得到密码学安全的随机数生成器 CSPRNG. 本文我们就来看看线性同余法是如何被预测的以及 CSPRNG 是如何克服这一点的.
+线性同余为什么是可预测的 线性同余的公示如下, A, C, M 是常数:
+$$R_{n+1} = (A \times R_n + C) \bmod M$$1
+其中
+$$R_0 = (A \times seed + C) \bmod M$$
+我们说过不可预测的定义:
+即使给出产生序列的算法或硬件和所有以前产生的位序列, 也不可能通过计算来预测下一个随机位是什么.
+应用密码学: 协议, 算法与 C 源程序》第 2 版2
+线性同余的算法很简单只是一个多项式, 其常数 A, C, M 一般是不公开的, seed 一般也不会让我们知道, 但是显然我们只要知道它生成的 4 个随机数, 就能反推出 A, C, M 以及 seed, 从而整个随机序列我们都能知晓.
+CSPRNG 如何做到不可预测 由上述可知线性同余的问题在于容易被反推, 所以首先我们要解决容易反推的问题, 如果做到不被反推呢?</description></item><item><title>随机数与伪随机数生成器</title><link>/posts/prng/</link><pubDate>Sun, 09 May 2021 00:00:00 +0000</pubDate><guid>/posts/prng/</guid><description>想必我们都知道随机数和伪随机数的说法, 但是未必真能说清楚他们二者的区别, 只是隐约的知道伪随机数不是真正的随机数, 但是再往深了说就说不清了. 那今天我们就来深入的研究一下二者的区别.
 什么是随机数? 起笔时我才发现还真是很难给出随机数的定义, 于是我搜索了一番, 发现不仅 Google 没有答案, 连我参考的两本密码学的名著也没有明确定义. 奈何这一段的标题都写出来了, 所以我苦思了好几分钟, 认为这一定义还是比较不错的:
 不确定的数.
 这背后延伸的意思就是, “不被安排” “不是遵循某个规则产生”, 这个定义和英文单词 &amp;ldquo;random&amp;rdquo; 的释义有着异曲同工之妙:
 “确定” 和 “不确定” 在物理世界中都是广泛存在的, 比如抛出的硬币确定会落地, 但是哪面朝上就不确定了. 但是对计算机来说, “不确定” 却是不存在的, 因为数学一定是确定的, 计算机就是数学, 计算机里的程序, 算法, 对于确定的输入, 一定会得到确定的输出. 如何让计算机输出不确定的结果? 那就是把外界的不确定作为计算机的输入.
 物理世界中的不确定也就是我们所说的真随机(TRNG).
 伪随机 由于真随机来自于计算机外部, 获得的代价往往较高, 而在计算机的应用场景中我们也并不总是要求随机数都有真随机那么高的不确定性, 所以这就衍生出了对伪随机的需求. 伪随机由算法产生, 设计良好的算法产生的随机序列能够以假乱真, 产生伪随机数的算法被叫做伪随机数生成器.
-伪随机数生成器通常接受一个 seed 用来初始化生成器的初始状态, 后面会看到, 这个 seed 在某些情况下是必须提供的, 在另外一些情况下可以不提供, 但即使是在不需要提供的情况下, 提供 seed 仍然是较好的工程实践[^1].
+伪随机数生成器通常接受一个 seed 用来初始化生成器的初始状态, 后面会看到, 这个 seed 在某些情况下是必须提供的, 在另外一些情况下可以不提供, 但即使是在不需要提供的情况下, 提供 seed 仍然是较好的工程实践1.
 随机的三重等级 业界特别是密码学领域将随机分为三个级别:
 伪随机 (PRNG) 密码学安全的伪随机 (CSPRNG) 真随机 (TRNG) 伪随机 (PRNG) Pseudo-random number generator</description></item><item><title>对解释器与 JIT 的一点思考</title><link>/posts/jit/</link><pubDate>Mon, 10 Dec 2018 00:00:00 +0000</pubDate><guid>/posts/jit/</guid><description>我一直知道解释器与编译器的区别. 编译器是事先将代码编译成机器码, 然后直接送进内存让 cpu 执行, 解释器则是解释执行代码, 可能会将代码先转换成一种中间码, 但我一直有一个误区就是解释器在解释执行的时候会把源代码或者中间码转成机器码, 也直接交由 cpu 执行, 然而我错了. 解释器是不会把源代码或者中间码转换成机器码的, 源代码或者中间码是直接在解释器内部的虚拟机上执行的.
 当我认识到这一点之后, 我首先想到的虚拟机怎么实现的基本操作? 比如不借助 cpu 中的 ALU (加法器), 虚拟机怎么实现加法操作? 比如 2 + 3 这个表达式, 在词法分析后得到 &amp;ldquo;2&amp;rdquo; &amp;ldquo;+&amp;rdquo; &amp;ldquo;3&amp;rdquo; 三个 token, 虚拟机可以知道这是加法, 但是它怎么知道 &amp;ldquo;2&amp;rdquo; 和 &amp;ldquo;3&amp;rdquo; 分别代表多少? 2 + 3 它要怎么计算? 这是虚拟机无法模拟的. 略加思考, 我明白了, 试想一下, 虚拟机是什么语言写的? 虚拟机又是运行在哪里?
