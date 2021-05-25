@@ -89,7 +89,6 @@ PRNG 还是 CSPRNG 当然不具备这个特性, 因为他们都是算法实现, 
 
 只有文首对来自物理世界中的随机数的叙述才算是真随机. 比如同一地点抛硬币 5 次, 得到一个序列, 再抛硬币 5 次又得到一个序列. 两次抛硬币的外界输入是一样的, 但两个序列的结果是不一样的, 这就是不可重现.
 
----
 
-[^1]. https://stats.stackexchange.com/a/354377/320904
-[^2]. https://book.douban.com/subject/25772389/
+[^1]: https://stats.stackexchange.com/a/354377/320904
+[^2]: https://book.douban.com/subject/25772389/
