@@ -1,6 +1,5 @@
 ---
 title: 书单
-menu: main # Optional, add page to a menu. Options: main, side, footer
 toc: false
 ---
 

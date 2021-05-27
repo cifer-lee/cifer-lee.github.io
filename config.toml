@@ -11,6 +11,19 @@ disqusShortname = "justforfree"        # your discuss shortname         # Disqus
   name = "Cifer"
   homepage = "https://cifer76.github.io/"
 
+[[menu.main]]
+  name = "How to learn new things"
+  url = "/how-to-learn"
+[[menu.main]]
+  name = "Readings"
+  url = "/reading"
+[[menu.main]]
+  name = "How to Invest"
+  url = "/investing"
+[[menu.main]]
+  name = "SKILLS"
+  url = "/eight-part-essay"
+
 [params]
   description = "Cifer's Personal blog about everything" # Site description. Used in meta description
   copyright = "Cifer" # Footer copyright holder, otherwise will use site title
@@ -53,19 +66,3 @@ disqusShortname = "justforfree"        # your discuss shortname         # Disqus
   twitter = "0x76i"
   github = "cifer76"
   email = "mantianyu@gmail.com"
-
-[[params.socials]]
-name = "Books"
-link = "/reading"
-[[params.socials]]
-name = "How to learn new things"
-link = "/how-to-learn"
-[[params.socials]]
-name = "Investing"
-link = "/investingrule"
-[[params.socials]]
-name = "Skills"
-link = "/eight-part-essay"
-[[params.socials]]
-name = "Github"
-link = "https://github.com/cifer76"

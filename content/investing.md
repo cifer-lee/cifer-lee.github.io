@@ -1,6 +1,5 @@
 ---
 title: "投资理念"
-menu: main # Optional, add page to a menu. Options: main, side, footer
 toc: false
 ---
 
