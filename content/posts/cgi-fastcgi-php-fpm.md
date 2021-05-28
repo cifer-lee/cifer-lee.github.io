@@ -1,6 +1,6 @@
 ---
 title: 通俗地解释 CGI, FastCGI, php-fpm 之间的关系
-date: 2017-11-09
+date: 2014-07-02
 categories:
   - Web
 tags:
