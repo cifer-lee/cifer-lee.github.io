@@ -2,7 +2,7 @@
 你应该能猜得到, 既然 WSGI 也归到了 &ldquo;通用网关协议 (CGI) 进化史&rdquo; 这一系列里面, 那么 WSGI 和 CGI 肯定也是有点关系的.
 WSGI 是专为 python 设计的协议, 其包装了 FastCGI 协议, WSGI server 一般也都能够作为 SCGI server, 或者 FastCGI server 运行.
 如果说 FastCGI 传递信息时用的是一种底层字节流的形式, 那么 WSGI 就是将这字节流结构化为 python 对象, 这使得在 python 中进行 web 开发时, 你只要写一个文件上传的表单, 通过 WSGI 你就能直接获得这个文件的对象, 而不必自己去读取 HTTP 请求体来接收上传的文件.
-Python 养了很多的框架, 如 Zope, Quixote, Webware, SkunkWeb, PSO 以及 Twisted Web."><meta property="og:type" content="article"><meta property="og:url" content="/posts/common-gateway-interface-evolution-4/"><meta property="article:section" content="posts"><meta itemprop=name content="通用网关协议 (CGI) 进化史 番外篇"><meta itemprop=description content="WSGI 在 python 大红大紫的今天, 除了 FastCGI, 我们听到的最多的可能就要数 WSGI 了, 那么 WSGI 又是啥呢? 它和 CGI, SCGI, FastCGI 又有什么关系呢?
+Python 养了很多的框架, 如 Zope, Quixote, Webware, SkunkWeb, PSO 以及 Twisted Web."><meta property="og:type" content="article"><meta property="og:url" content="https://cifer76.github.io/posts/common-gateway-interface-evolution-4/"><meta property="article:section" content="posts"><meta itemprop=name content="通用网关协议 (CGI) 进化史 番外篇"><meta itemprop=description content="WSGI 在 python 大红大紫的今天, 除了 FastCGI, 我们听到的最多的可能就要数 WSGI 了, 那么 WSGI 又是啥呢? 它和 CGI, SCGI, FastCGI 又有什么关系呢?
 你应该能猜得到, 既然 WSGI 也归到了 &ldquo;通用网关协议 (CGI) 进化史&rdquo; 这一系列里面, 那么 WSGI 和 CGI 肯定也是有点关系的.
 WSGI 是专为 python 设计的协议, 其包装了 FastCGI 协议, WSGI server 一般也都能够作为 SCGI server, 或者 FastCGI server 运行.
 如果说 FastCGI 传递信息时用的是一种底层字节流的形式, 那么 WSGI 就是将这字节流结构化为 python 对象, 这使得在 python 中进行 web 开发时, 你只要写一个文件上传的表单, 通过 WSGI 你就能直接获得这个文件的对象, 而不必自己去读取 HTTP 请求体来接收上传的文件.

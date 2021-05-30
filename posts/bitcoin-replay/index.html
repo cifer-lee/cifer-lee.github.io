@@ -2,7 +2,7 @@
 在高度 A 左右我们生成了两个新地址 a, b. 然后在高度 B 的时候, BTC 链分出了 BTG 链 (也就是三角形那条, 图里忘了标了). 重放是怎么发生的呢?
 假如我们现在在 BTC 链上发起交易 a -> b, 由于 BTC 网络的交易是明文全网广播的, 所以 b 很容易在 BTC 网络截获到这个 a -> b 交易广播, 然后 b 只要把这个广播全文拿到 BTG 网络上再进行一次广播, 这就达成了重放. 可以说是 b 对 a 做了一次重放攻击.
 同理, 如果 a -> b 的交易最初是在 BTG 链上发起的, 那么这次交易广播也很容易被拿来在 BTC 链上重放. 这就是双向重放.
-总之重放的后果是显而易见的, 如果上例中 a 是你, b 是我, 那么原本在另一条链上属于你的钱, 就会被一并转给我."><meta property="og:type" content="article"><meta property="og:url" content="/posts/bitcoin-replay/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2017-10-24T00:00:00+00:00"><meta property="article:modified_time" content="2017-10-24T00:00:00+00:00"><meta itemprop=name content="说一说重放, 重放保护, 以及分叉期间我们该怎么做"><meta itemprop=description content="何为重放 先说重放, 重放指的是分叉过后, 由于新链和旧链所运行的协议可能完全兼容, 导致在旧链上发生的交易拿到新链上也是合法的. 以本次的即将上演的 BTC/BTG 分叉为例:
+总之重放的后果是显而易见的, 如果上例中 a 是你, b 是我, 那么原本在另一条链上属于你的钱, 就会被一并转给我."><meta property="og:type" content="article"><meta property="og:url" content="https://cifer76.github.io/posts/bitcoin-replay/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2017-10-24T00:00:00+00:00"><meta property="article:modified_time" content="2017-10-24T00:00:00+00:00"><meta itemprop=name content="说一说重放, 重放保护, 以及分叉期间我们该怎么做"><meta itemprop=description content="何为重放 先说重放, 重放指的是分叉过后, 由于新链和旧链所运行的协议可能完全兼容, 导致在旧链上发生的交易拿到新链上也是合法的. 以本次的即将上演的 BTC/BTG 分叉为例:
 在高度 A 左右我们生成了两个新地址 a, b. 然后在高度 B 的时候, BTC 链分出了 BTG 链 (也就是三角形那条, 图里忘了标了). 重放是怎么发生的呢?
 假如我们现在在 BTC 链上发起交易 a -> b, 由于 BTC 网络的交易是明文全网广播的, 所以 b 很容易在 BTC 网络截获到这个 a -> b 交易广播, 然后 b 只要把这个广播全文拿到 BTG 网络上再进行一次广播, 这就达成了重放. 可以说是 b 对 a 做了一次重放攻击.
 同理, 如果 a -> b 的交易最初是在 BTG 链上发起的, 那么这次交易广播也很容易被拿来在 BTC 链上重放. 这就是双向重放.
