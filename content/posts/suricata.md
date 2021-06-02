@@ -73,5 +73,20 @@ Once `suricata-update udpate` finishes, all of the rules are write into a single
 
 SID here means "signature id'. If you need to add your own rules, please refer to https://doc.emergingthreats.net/bin/view/Main/SidAllocation to choose your SID properly.
 
+## Developer resources
+
+### Self building suricata
+
+1. suricata honors the `autogen.sh`, `configure`, `make` build steps.
+2. suricata relies on libhtp during building, we need to put the libhtp's source under suricata source root, then `./configure` will find it automatically
+3. suricata relies on rust after 4.1, need to [install rust](https://www.rust-lang.org/tools/install) before `./configure`
+
+### Source code
+
+#### Thread vars, Thread modules and Thread module slots
+
+In suricata's source code, `ThreadVars` represents a system thread, it also has a thread module slots which is a linked list of `TmModule`, on the other side, `ThreadVars` is wrapped by `Thread`, thereafter all of the `Thread`s are contained in `Threads`, meanwhile, `ThreadVars`s are connected to each other to a linked list too.
+
+
 
 [^1]: This url is obtained from suricata-update's source code, the code path is /usr/local/lib/python3.9/site-packages/suricata/update/sources.py on my machine
