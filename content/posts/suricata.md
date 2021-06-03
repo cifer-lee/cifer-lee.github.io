@@ -27,11 +27,15 @@ Generic build parameters:
 
 So we know if we don't specify the config path and the output log path, suricata will read configuration from `/usr/local/etc/suricata/` and outputs log to `/usr/local/var/log/suricata`.
 
+`suricata --dump-config` is alaso helpful.
+
 ## Rule management
 
 ### source listing
 
-It's convenient to use the `suricata-update` command to manage rules, the same type of rules are usually grouped into a same source. The OISF fundation maintains an index of the famous sources here: https://www.openinfosecfoundation.org/rules/index.yaml[^1], you can use `suricata-update list-sources` command to read the famous sources from this url, these famous sources can be considered as the builtin sources. The output of `suricata-update list-sources` looks like:
+It's convenient to use the `suricata-update` command to manage rules, the same type of rules are usually grouped into a same source. The OISF fundation maintains an index of the famous sources here: [https://www.openinfosecfoundation.org/rules/index.yaml]()[^1], you can use `suricata-update list-sources` command to read the famous sources from this url, these famous sources can be considered as the builtin sources. The output of `suricata-update list-sources` looks like:
+
+[^1]: This url is obtained from suricata-update's source code, the code path is /usr/local/lib/python3.9/site-packages/suricata/update/sources.py on my machine
 
 ```
 Name: et/open
@@ -69,9 +73,19 @@ Okay, now you can run `suricata-update update` to fetch the latest rules of all 
 
 Once `suricata-update udpate` finishes, all of the rules are write into a single file: /var/lib/suricata/rules/suricata.rules(this can be changed in suricata configuration file).
 
-## Rule SID allocation
+### Writing your own rules and the rule SID allocation
 
 SID here means "signature id'. If you need to add your own rules, please refer to https://doc.emergingthreats.net/bin/view/Main/SidAllocation to choose your SID properly.
+
+## Features
+
+### Bypass
+
+Firstly, "bypass" here means skipping the further steps[^2] during processing a packet, instead of skipping further rules, which is what I thought, misunderstoodly.
+
+[^2]: "Suricata reads a packet, decodes it, checks it in the flow table...", refer to https://www.stamus-networks.com/blog/2016/09/28/suricata-bypass-feature
+
+Bypassing is implemented in two ways in suricata, local and capture, local means the bypassing logic exists in suricata's source code. Capture means the logic is provided by the various "captures"(AF_PACKET, NFQ, etc...) in linux kernel, to utilize it, suricata just call a function provided by kernel and declare the rule it want to bypass.
 
 ## Developer resources
 
@@ -87,6 +101,12 @@ SID here means "signature id'. If you need to add your own rules, please refer t
 
 In suricata's source code, `ThreadVars` represents a system thread, it also has a thread module slots which is a linked list of `TmModule`, on the other side, `ThreadVars` is wrapped by `Thread`, thereafter all of the `Thread`s are contained in `Threads`, meanwhile, `ThreadVars`s are connected to each other to a linked list too.
 
+#### Program flow
 
+```
+RunModeDispatch() --> mode->RunModeFunc() --> Creates thread and assigns thread modules to slots, slot init == thread module init, slot func == thread func/pkt acqloop/management. Thread entry function is the tm_func() of ThreadVars, which usually the TmThreadsSlotPktAcqLoop()(src/tm-threads.c).
+```
 
-[^1]: This url is obtained from suricata-update's source code, the code path is /usr/local/lib/python3.9/site-packages/suricata/update/sources.py on my machine
+#### Packet arriving time
+
+suricata relies on pcap to get the packet from network interface, when getting the packet, pcap will [populate the timestamp the packet arrives at the interface](https://github.com/the-tcpdump-group/libpcap/blob/fbcc461fbc2bd3b98de401cc04e6a4a10614e99f/pcap-netfilter-linux.c#L252), suricata gets this info and exposes it to us as well.
