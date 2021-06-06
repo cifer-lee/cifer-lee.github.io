@@ -79,6 +79,12 @@ Gold mine reserves means the unmined gold of the discovered deposits[^5]. By 202
 
 This refers to how much gold a country's central bank holds, by 2020 USA is the top 1 with over 8000 tonnes of gold in its vaults[^8]. 
 
+## World Official Gold Holdings
+
+https://www.gold.org/cn/goldhub/data/monthly-central-bank-statistics
+
+![](world-official-gold-holdings.png)
+
 ## References
 
 [^1]: [Gold grade and gold mining?](https://www.bullionbypost.co.uk/index/gold/gold-grade/)
