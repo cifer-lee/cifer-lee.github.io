@@ -89,6 +89,13 @@ Bypassing is implemented in two ways in suricata, local and capture, local means
 
 ## Developer resources
 
+Developer wiki: https://redmine.openinfosecfoundation.org/projects/suricata/wiki
+Roadmap: https://redmine.openinfosecfoundation.org/projects/suricata/roadmap
+
+### Forefront topics
+
+1. [Capture full session on alert](https://redmine.openinfosecfoundation.org/issues/120)
+
 ### Self building suricata
 
 1. suricata honors the `autogen.sh`, `configure`, `make` build steps.
@@ -110,3 +117,7 @@ RunModeDispatch() --> mode->RunModeFunc() --> Creates thread and assigns thread 
 #### Packet arriving time
 
 suricata relies on pcap to get the packet from network interface, when getting the packet, pcap will [populate the timestamp the packet arrives at the interface](https://github.com/the-tcpdump-group/libpcap/blob/fbcc461fbc2bd3b98de401cc04e6a4a10614e99f/pcap-netfilter-linux.c#L252), suricata gets this info and exposes it to us as well.
+
+## Other resources
+
+Suricata vs Snort: https://core.ac.uk/download/pdf/36699186.pdf
