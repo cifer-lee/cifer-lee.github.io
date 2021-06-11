@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>PPTP on</title><link>https://cifer76.github.io/tags/pptp/</link><description>Recent content in PPTP on</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><atom:link href="https://cifer76.github.io/tags/pptp/index.xml" rel="self" type="application/rss+xml"/><item><title>PPTP VPN 基础与搭建</title><link>https://cifer76.github.io/posts/pptp-vpn-basic/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cifer76.github.io/posts/pptp-vpn-basic/</guid><description>我们知道 VPN 全称是虚拟专用网(Virtual Private Network), 就像很多计算机名词一样, 这个词也已经被过分使用, 而导致很多人知道它的全称却不知道它具体代表什么意思了. 在这里我们先好好复习一下 VPN 的定义.
+我不喜欢肢解名字来解释一件东西, 但这里还是挺适用的, 首先从名字可以看出来, VPN 有两个特点:
+专用 (Private) 之所以称为专用网, 是因为这种网络只是用于本机构的主机和本机构的主机之间进行通信. 而不是用于本机构内的主机和外界网络通信.
+虚拟 (Virtual) 而之所以称之为虚拟, 则是因为实际上并没有使用专用的物理的线路来连接分散于各地的本机构的网络. 而是使用了现有的互联网的线路.
+我们发现, 实际上虚拟专用网和我们接触最多的局域网很像:
+首先, 它们使用的都是专用地址
+10.0.0.0 &amp;ndash; 10.255.255.255 172.16.0.0 &amp;ndash; 172.31.255.255 192.168.0.0 &amp;ndash; 192.168.255.255 其次, 它们都能划分不同的子网
+实际上, 我们平常所说的局域网也可以说成是专用网, 因为严格来讲, 局域网中的主机是不能直接和外界通信的, 只能直接和自己网络的主机进行通信. 要和外界通信, 首先要有一个公网的地址, 这要借助 NAT, 那就是间接和外界通信了.
+我们来看一下不同的地方, 不同的是, 在局域网中, 不管划分多少个子网, 子网中的主机物理位置都不会里的太远, 而在虚拟专用网中就不同了, 主机的距离离的非但远, 还不是一般的远, 可能跨国跨海.
+在局域网中, 不同的主机通过物理专线连接路由器然后主机之间进行交流, 这在虚拟专用网中就不太实际了, 总不能我在太平洋东岸放个路由器连几台主机, 然后拉个海底电缆到西岸连几台主机吧, 虽然理论上是可行的.</description></item></channel></rss>
