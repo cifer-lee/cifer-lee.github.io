@@ -2,7 +2,7 @@
 title: 对快速排序的理解与实现
 date: 2016-07-24
 slug: quick-sort
-category: 
+categories: 
   - Algorithm
 tags:
   - algorithm

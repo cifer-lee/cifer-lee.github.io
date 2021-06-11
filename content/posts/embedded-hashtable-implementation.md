@@ -2,7 +2,7 @@
 title: 嵌入式哈系表的实现
 slug: embedded-hashtable-implementation
 date: 2017-01-05
-category:
+categories:
   - Algorithm
 tags:
   - algorithm
