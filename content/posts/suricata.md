@@ -131,6 +131,36 @@ If enabled, the detection engine is called in the FlowWorker slot, just have a l
 
 * DetectEngineThreadCtx
 
+#### Rules loading
+
+**Code flow**:
+
+```
+SuricataMain()
+    --> PostConfLoadedSetup()
+        --> SigTableSetup(), setup the global table: `sigmatch_table`
+    --> PostConfLoadedDetectSetup()
+        --> Detect engine context(the `de_ctx` all over the codebase) init and add to master
+        --> LoadSignatures()
+            --> SigLoadSignatures()
+                --> call DetectLoadCompleteSigPath() to detect the rule files path
+                --> ProcessSigFiles()
+                    --> DetectLoadSigFile(), this function will scan every line of the rules file
+                        --> loop DetectEngineAppendSig(), then calls this function to append each rule
+                            into the detection engine context signature list: `de_ctx->sig_list`
+                            --> SigInit() --> SigInitHelper(), which actually parse the rule line
+                                into a `Signature` structure
+                                --> SigParse()
+                                    --> SigParseBasics()
+                                    --> SigParseOptions(), during paring options, `sigmatch_table`
+                                        is checked by the option name to find the matched item, and the
+                                        `Setup()` method of each item is called
+                --> SCSigRegisterSignatureOrderingFuncs()
+                --> SCSigOrderSignatures(), these two function response for reordering the signatures
+                --> SigGroupBuild(), this converts the signature list into the runtime match structure
+                    specificially, `sig_list` converts to `sig_array`
+```
+
 ### 3.4. Outputs Log
 
 **Concepts:**
