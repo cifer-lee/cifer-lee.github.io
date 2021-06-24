@@ -26,7 +26,7 @@ sweep 功能 electrum 有一个 sweep 功能, 刚开始乍一看我惊诧的以�
 导入私钥本应该是个很简单直接的事情, 但是由于 seed 方式生成的钱包的特点就是里面的私钥都是可以由 seed 推导出来的确定性私钥, 随便导入一个我们在其它客户端生成的私钥自然是不行的. 因此就引入了这个 sweep 机制, sweep 的本质就是将你在其他客户端上所生成的私钥的所有余额发送到这个钱包中由 seed 生成的某个私钥上.
 所以 &ldquo;sweep&rdquo; 指的是 sweep 别的客户端生成的私钥, 而不是 seed 钱包里的私钥.</div></article></main></div><aside class=sidebar><div class="widget-search widget"><form class=widget-search__form role=search method=get action=https://google.com/search><label><input class=widget-search__field type=search placeholder=SEARCH… name=q aria-label=SEARCH…></label>
 <input class=widget-search__submit type=submit value=Search>
-<input type=hidden name=sitesearch value=https://cifer76.github.io/></form></div><div class="widget-recent widget"><h4 class=widget__title>Recent Posts</h4><div class=widget__content><ul class=widget__list><li class=widget__item><a class=widget__link href=/posts/suricata/>Suricata Quickstart</a></li><li class=widget__item><a class=widget__link href=/posts/bitcoin-vs-gold/>Bitcoin vs Gold</a></li><li class=widget__item><a class=widget__link href=/posts/anaerobic-aerobic-exercise/>有氧运动和无氧运动的区别</a></li><li class=widget__item><a class=widget__link href=/posts/gold/>Gold Mining</a></li><li class=widget__item><a class=widget__link href=/posts/bid-ask-spread/>为什么 bid-ask spread 是做市商的潜在收益</a></li></ul></div></div><div class="widget-categories widget"><h4 class=widget__title>Categories</h4><div class=widget__content><ul class=widget__list><li class=widget__item><a class=widget__link href=/categories/algorithm/>Algorithm</a>&nbsp;
+<input type=hidden name=sitesearch value=https://cifer76.github.io/></form></div><div class="widget-recent widget"><h4 class=widget__title>Recent Posts</h4><div class=widget__content><ul class=widget__list><li class=widget__item><a class=widget__link href=/posts/same-origin-policy/>A Clarification About the Same-Origin Policy</a></li><li class=widget__item><a class=widget__link href=/posts/suricata/>Suricata Quickstart</a></li><li class=widget__item><a class=widget__link href=/posts/bitcoin-vs-gold/>Bitcoin vs Gold</a></li><li class=widget__item><a class=widget__link href=/posts/anaerobic-aerobic-exercise/>有氧运动和无氧运动的区别</a></li><li class=widget__item><a class=widget__link href=/posts/gold/>Gold Mining</a></li></ul></div></div><div class="widget-categories widget"><h4 class=widget__title>Categories</h4><div class=widget__content><ul class=widget__list><li class=widget__item><a class=widget__link href=/categories/algorithm/>Algorithm</a>&nbsp;
 <span class="widget__counter widget__counter--bubble">3</span></li><li class=widget__item><a class=widget__link href=/categories/bitcoin/>Bitcoin</a>&nbsp;
 <span class="widget__counter widget__counter--bubble">7</span></li><li class=widget__item><a class=widget__link href=/categories/blockchain/>Blockchain</a>&nbsp;
 <span class="widget__counter widget__counter--bubble">6</span></li><li class=widget__item><a class=widget__link href=/categories/c/>C</a>&nbsp;
@@ -47,7 +47,7 @@ sweep 功能 electrum 有一个 sweep 功能, 刚开始乍一看我惊诧的以�
 <span class="widget__counter widget__counter--bubble">1</span></li><li class=widget__item><a class=widget__link href=/categories/rust/>Rust</a>&nbsp;
 <span class="widget__counter widget__counter--bubble">1</span></li><li class=widget__item><a class=widget__link href=/categories/sdn/>SDN</a>&nbsp;
 <span class="widget__counter widget__counter--bubble">4</span></li><li class=widget__item><a class=widget__link href=/categories/web/>Web</a>&nbsp;
-<span class="widget__counter widget__counter--bubble">6</span></li><li class=widget__item><a class=widget__link href=/categories/yearinreview/>YearInReview</a>&nbsp;
+<span class="widget__counter widget__counter--bubble">7</span></li><li class=widget__item><a class=widget__link href=/categories/yearinreview/>YearInReview</a>&nbsp;
 <span class="widget__counter widget__counter--bubble">3</span></li><li class=widget__item><a class=widget__link href=/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/>嵌入式</a>&nbsp;
 <span class="widget__counter widget__counter--bubble">1</span></li><li class=widget__item><a class=widget__link href=/categories/%E8%81%8C%E4%B8%9A/>职业</a>&nbsp;
 <span class="widget__counter widget__counter--bubble">1</span></li></ul></div></div><div class="widget-taglist widget"><h4 class=widget__title>Tags</h4><div class=widget__content><a class="widget-taglist__link widget__link btn" href=/tags/algorithm/ title=algorithm>algorithm</a>
@@ -62,6 +62,7 @@ sweep 功能 electrum 有一个 sweep 功能, 刚开始乍一看我惊诧的以�
 <a class="widget-taglist__link widget__link btn" href=/tags/cgi/ title=cgi>cgi</a>
 <a class="widget-taglist__link widget__link btn" href=/tags/commerce/ title=commerce>commerce</a>
 <a class="widget-taglist__link widget__link btn" href=/tags/coroutine/ title=coroutine>coroutine</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/cors/ title=CORS>CORS</a>
 <a class="widget-taglist__link widget__link btn" href=/tags/csprng/ title=CSPRNG>CSPRNG</a>
 <a class="widget-taglist__link widget__link btn" href=/tags/dfs/ title=DFS>DFS</a>
 <a class="widget-taglist__link widget__link btn" href=/tags/dpos/ title=dpos>dpos</a>
@@ -100,6 +101,7 @@ sweep 功能 electrum 有一个 sweep 功能, 刚开始乍一看我惊诧的以�
 <a class="widget-taglist__link widget__link btn" href=/tags/rhel/ title=rhel>rhel</a>
 <a class="widget-taglist__link widget__link btn" href=/tags/rust/ title=rust>rust</a>
 <a class="widget-taglist__link widget__link btn" href=/tags/ryu/ title=Ryu>Ryu</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/same-origin/ title=Same-origin>Same-origin</a>
 <a class="widget-taglist__link widget__link btn" href=/tags/scgi/ title=SCGI>SCGI</a>
 <a class="widget-taglist__link widget__link btn" href=/tags/sdn/ title=SDN>SDN</a>
 <a class="widget-taglist__link widget__link btn" href=/tags/segwit/ title=segwit>segwit</a>

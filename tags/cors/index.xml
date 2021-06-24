@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>CORS on</title><link>https://cifer76.github.io/tags/cors/</link><description>Recent content in CORS on</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 24 Jun 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://cifer76.github.io/tags/cors/index.xml" rel="self" type="application/rss+xml"/><item><title>A Clarification About the Same-Origin Policy</title><link>https://cifer76.github.io/posts/same-origin-policy/</link><pubDate>Thu, 24 Jun 2021 00:00:00 +0000</pubDate><guid>https://cifer76.github.io/posts/same-origin-policy/</guid><description>转自我在 Stackoverflow 的回答:
+I finally made myself clear after having been struggling half a hour about this saying:
+Cross-origin writes are typically allowed&amp;hellip;.
+Cross-origin embedding is typically allowed&amp;hellip;.
+Cross-origin reads are typically not allowed&amp;hellip;
+To better understand with these three phrases, the first thing you need to keep in mind is that same-origin policy is about restricting access the loaded result from one origin to another origin, within your browser, so it does nothing directly to do with cross-origin requesting, which involves requesting to the server.</description></item></channel></rss>

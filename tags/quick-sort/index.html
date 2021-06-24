@@ -5,7 +5,7 @@ pivot 的选取策略 交换策略, 也就是分区策略 pivot 的最终位置�
 目前公认比较不错的 pivot 选取策略叫做 &ldquo;Median-of-Three&rdquo;, 顾名思义, 它的意思就是在整个数组中选取三个元素, 然后再选出这三个元素的中位数作为 pivot. 那么选择哪个元素呢? 就是第一, 最后, 和中间.
 第二个问题, 交换. 交换这个过程在快排里有个专门的术语叫做 &ldquo;Partition&rdquo;, 也就是分区. 因为快排的核心其实就是在不断的分区, 将 &lt; pivot 的分一区, > pivot 的分另一区, 当分区结束后, 所有 &lt; pivot 的都在 pivot 左边, 反之都在 pivot 右边.</div><div class="list__footer clearfix"><a class="list__footer-readmore btn" href=/posts/quick-sort/>Read more…</a></div></article></main></div><aside class=sidebar><div class="widget-search widget"><form class=widget-search__form role=search method=get action=https://google.com/search><label><input class=widget-search__field type=search placeholder=SEARCH… name=q aria-label=SEARCH…></label>
 <input class=widget-search__submit type=submit value=Search>
-<input type=hidden name=sitesearch value=https://cifer76.github.io/></form></div><div class="widget-recent widget"><h4 class=widget__title>Recent Posts</h4><div class=widget__content><ul class=widget__list><li class=widget__item><a class=widget__link href=/posts/suricata/>Suricata Quickstart</a></li><li class=widget__item><a class=widget__link href=/posts/bitcoin-vs-gold/>Bitcoin vs Gold</a></li><li class=widget__item><a class=widget__link href=/posts/anaerobic-aerobic-exercise/>有氧运动和无氧运动的区别</a></li><li class=widget__item><a class=widget__link href=/posts/gold/>Gold Mining</a></li><li class=widget__item><a class=widget__link href=/posts/bid-ask-spread/>为什么 bid-ask spread 是做市商的潜在收益</a></li></ul></div></div><div class="widget-categories widget"><h4 class=widget__title>Categories</h4><div class=widget__content><ul class=widget__list><li class=widget__item><a class=widget__link href=/categories/algorithm/>Algorithm</a>&nbsp;
+<input type=hidden name=sitesearch value=https://cifer76.github.io/></form></div><div class="widget-recent widget"><h4 class=widget__title>Recent Posts</h4><div class=widget__content><ul class=widget__list><li class=widget__item><a class=widget__link href=/posts/same-origin-policy/>A Clarification About the Same-Origin Policy</a></li><li class=widget__item><a class=widget__link href=/posts/suricata/>Suricata Quickstart</a></li><li class=widget__item><a class=widget__link href=/posts/bitcoin-vs-gold/>Bitcoin vs Gold</a></li><li class=widget__item><a class=widget__link href=/posts/anaerobic-aerobic-exercise/>有氧运动和无氧运动的区别</a></li><li class=widget__item><a class=widget__link href=/posts/gold/>Gold Mining</a></li></ul></div></div><div class="widget-categories widget"><h4 class=widget__title>Categories</h4><div class=widget__content><ul class=widget__list><li class=widget__item><a class=widget__link href=/categories/algorithm/>Algorithm</a>&nbsp;
 <span class="widget__counter widget__counter--bubble">3</span></li><li class=widget__item><a class=widget__link href=/categories/bitcoin/>Bitcoin</a>&nbsp;
 <span class="widget__counter widget__counter--bubble">7</span></li><li class=widget__item><a class=widget__link href=/categories/blockchain/>Blockchain</a>&nbsp;
 <span class="widget__counter widget__counter--bubble">6</span></li><li class=widget__item><a class=widget__link href=/categories/c/>C</a>&nbsp;
@@ -26,7 +26,7 @@ pivot 的选取策略 交换策略, 也就是分区策略 pivot 的最终位置�
 <span class="widget__counter widget__counter--bubble">1</span></li><li class=widget__item><a class=widget__link href=/categories/rust/>Rust</a>&nbsp;
 <span class="widget__counter widget__counter--bubble">1</span></li><li class=widget__item><a class=widget__link href=/categories/sdn/>SDN</a>&nbsp;
 <span class="widget__counter widget__counter--bubble">4</span></li><li class=widget__item><a class=widget__link href=/categories/web/>Web</a>&nbsp;
-<span class="widget__counter widget__counter--bubble">6</span></li><li class=widget__item><a class=widget__link href=/categories/yearinreview/>YearInReview</a>&nbsp;
+<span class="widget__counter widget__counter--bubble">7</span></li><li class=widget__item><a class=widget__link href=/categories/yearinreview/>YearInReview</a>&nbsp;
 <span class="widget__counter widget__counter--bubble">3</span></li><li class=widget__item><a class=widget__link href=/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/>嵌入式</a>&nbsp;
 <span class="widget__counter widget__counter--bubble">1</span></li><li class=widget__item><a class=widget__link href=/categories/%E8%81%8C%E4%B8%9A/>职业</a>&nbsp;
 <span class="widget__counter widget__counter--bubble">1</span></li></ul></div></div><div class="widget-taglist widget"><h4 class=widget__title>Tags</h4><div class=widget__content><a class="widget-taglist__link widget__link btn" href=/tags/algorithm/ title=algorithm>algorithm</a>
@@ -41,6 +41,7 @@ pivot 的选取策略 交换策略, 也就是分区策略 pivot 的最终位置�
 <a class="widget-taglist__link widget__link btn" href=/tags/cgi/ title=cgi>cgi</a>
 <a class="widget-taglist__link widget__link btn" href=/tags/commerce/ title=commerce>commerce</a>
 <a class="widget-taglist__link widget__link btn" href=/tags/coroutine/ title=coroutine>coroutine</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/cors/ title=CORS>CORS</a>
 <a class="widget-taglist__link widget__link btn" href=/tags/csprng/ title=CSPRNG>CSPRNG</a>
 <a class="widget-taglist__link widget__link btn" href=/tags/dfs/ title=DFS>DFS</a>
 <a class="widget-taglist__link widget__link btn" href=/tags/dpos/ title=dpos>dpos</a>
@@ -79,6 +80,7 @@ pivot 的选取策略 交换策略, 也就是分区策略 pivot 的最终位置�
 <a class="widget-taglist__link widget__link btn" href=/tags/rhel/ title=rhel>rhel</a>
 <a class="widget-taglist__link widget__link btn" href=/tags/rust/ title=rust>rust</a>
 <a class="widget-taglist__link widget__link btn" href=/tags/ryu/ title=Ryu>Ryu</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/same-origin/ title=Same-origin>Same-origin</a>
 <a class="widget-taglist__link widget__link btn" href=/tags/scgi/ title=SCGI>SCGI</a>
 <a class="widget-taglist__link widget__link btn" href=/tags/sdn/ title=SDN>SDN</a>
 <a class="widget-taglist__link widget__link btn" href=/tags/segwit/ title=segwit>segwit</a>
