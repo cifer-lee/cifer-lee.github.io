@@ -15,7 +15,6 @@ tags:
 #lead: "Gold grade is a term used in gold mining, and should be used as a measure of the quality of gold ore – that is the raw material obtained from mining." # Lead text
 ---
 
-
 转自我在 [Stackoverflow 的回答](https://stackoverflow.com/a/68112216/1436289):
 
 I finally made myself clear after having been struggling half a hour about [this saying][1]:
@@ -26,27 +25,28 @@ I finally made myself clear after having been struggling half a hour about [this
 >
 > Cross-origin reads are typically not allowed...
 
---- 
+---
 
-To better understand with these three phrases, the first thing you need to keep in mind is that **same-origin policy is about restricting access the loaded result from one origin to another origin, within your *browser***, so it does nothing directly to do with cross-origin requesting, which involves requesting to the server.
+Depending on whether interacting with the server, I'd prefer to classify the same-origin policy into two types, instead of three:
 
-So what does that mean? it means that you have loaded two websites A and B with different origins, in website A there's a javascript snippet that wants to read the loaded content in website B, the browser - our safeguard, will block this action. This is the cross-origin reads case.
+1. reading the **already loaded resource** of originA from within originB in the browser
+2. requesting the remote resource of originA from within originB in the browser
 
-Let's see how the cross-origin writes and embedding cases look like:
+The first is the "Cross-origin reads"'s case and the second is the "Cross-origin writes" and "Cross-origin embedding"'s.
+
+The browser will definitely block the first case, so that a javascript snippet of websiteA cannot read the cookie set by websiteB - thus ensures the safety of our web accounts.
+
+For the second case, there're many cases a request is initiated from within one origin to another, such like:
 
 1. the HTML `<a href=...` tag that directs the browser the request another resource
 2. the HTML `<form action=... method="POST">` tag that makes the browser to post a form to another website
 3. the `<link rel="stylesheet" href="…">` tag which loads CSS style from another site and embeds it to our own webpage
 4. the `<img>` tag which loads the image from elsewhere and embeds it to our own webpage
 5. the `<script>` tag which loads the javascript code snippet from elsewhere and embeds into our own webpage
+6. `XMLHttpRequest` AJAX request
+7. Web Fonts (for cross-domain font usage in @font-face within CSS)
 
-See the difference? Both *Cross-origin writes* and *Cross-origin embedding* initiate a **new web request** to the server of the other origin, instead of reading the **already loaded result** from within the browser! Also it's important to note that whether the **new web request** results in a backend modification doesn't matter, we don't care whether it's a `GET` or `POST` request, as long as it causes a new interaction with the server, it is *Cross-origin writes*(or *Cross-origin embedding*).
-
-So, to conclude:
-
-* **Cross-origin reads typically disallowed** means disallowing reading the loaded result of originB from originA within the browser
-* **Cross-origin writes(and embedding) typically allowed** means allowing requesting to originB from originA within the browser, this is surely allowed, because this is how the WWW works, imagine the nightmare of the WWW if websites are not able to link to each other?
-  * note the "typically" in the origininal statement, there're cases where the browser disallows cross-origin writes as well(such as XMLHttpRequest, FetchAPI), this is another topic so we won't cover it in this post
+The browser allows the 1-5 scenarios while blocks 6 and 7, there're other scenarios the browser blocks too, you can check [this link](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#what_requests_use_cors) for all the scenarios blocked by the browser.
 
 
   [1]: https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy#cross-origin_network_access
