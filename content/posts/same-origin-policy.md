@@ -40,12 +40,13 @@ Let's see how the cross-origin writes and embedding cases look like:
 4. the `<img>` tag which loads the image from elsewhere and embeds it to our own webpage
 5. the `<script>` tag which loads the javascript code snippet from elsewhere and embeds into our own webpage
 
-See the difference? Both *Cross-origin writes* and *Cross-origin embedding* initiate a **new web request** to the server of the other origin, instead of reading the **already loaded result** from within the browser! Also it's important to note that whether the **new web request** results in a backend change doesn't matter, we don't care whether it's a `GET` or `POST` request, as long as it causes a new interaction with the server, it is *Cross-origin writes*(or *Cross-origin embedding*).
+See the difference? Both *Cross-origin writes* and *Cross-origin embedding* initiate a **new web request** to the server of the other origin, instead of reading the **already loaded result** from within the browser! Also it's important to note that whether the **new web request** results in a backend modification doesn't matter, we don't care whether it's a `GET` or `POST` request, as long as it causes a new interaction with the server, it is *Cross-origin writes*(or *Cross-origin embedding*).
 
 So, to conclude:
 
-* **Cross-origin reads disallowed** means disallowing reading the loaded result of originB from originA within the browser
-* **Cross-origin writes(and embedding) allowed** means allowing requesting to originB from originA within the browser, this is surely allowed, because this is how the WWW works, imagine the nightmare of the WWW if websites are not able to link to each other?
+* **Cross-origin reads typically disallowed** means disallowing reading the loaded result of originB from originA within the browser
+* **Cross-origin writes(and embedding) typically allowed** means allowing requesting to originB from originA within the browser, this is surely allowed, because this is how the WWW works, imagine the nightmare of the WWW if websites are not able to link to each other?
+  * note the "typically" in the origininal statement, there're cases where the browser disallows cross-origin writes as well(such as XMLHttpRequest, FetchAPI), this is another topic so we won't cover it in this post
 
 
   [1]: https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy#cross-origin_network_access
