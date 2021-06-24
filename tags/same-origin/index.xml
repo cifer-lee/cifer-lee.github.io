@@ -3,4 +3,5 @@ I finally made myself clear after having been struggling half a hour about this 
 Cross-origin writes are typically allowed&amp;hellip;.
 Cross-origin embedding is typically allowed&amp;hellip;.
 Cross-origin reads are typically not allowed&amp;hellip;
-To better understand with these three phrases, the first thing you need to keep in mind is that same-origin policy is about restricting access the loaded result from one origin to another origin, within your browser, so it does nothing directly to do with cross-origin requesting, which involves requesting to the server.</description></item></channel></rss>
+Depending on whether interacting with the server, I&amp;rsquo;d prefer to classify the same-origin policy into two types, instead of three:
+reading the already loaded resource of originA from within originB in the browser requesting the remote resource of originA from within originB in the browser The first is the &amp;ldquo;Cross-origin reads&amp;rdquo;&amp;rsquo;s case and the second is the &amp;ldquo;Cross-origin writes&amp;rdquo; and &amp;ldquo;Cross-origin embedding&amp;rdquo;&amp;rsquo;s.</description></item></channel></rss>
