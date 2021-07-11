@@ -95,7 +95,7 @@ SID here means "signature id'. If you need to add your own rules, please refer t
 
 Thread vars, Thread modules and Thread module slots:
 
-In suricata's source code, `ThreadVars` represents a system thread, it also has a thread module slots which is a linked list of `TmModule`, on the other side, `ThreadVars` is wrapped by `Thread`, then all of the `Thread`s are included in `Threads`, meanwhile, `ThreadVars`s are connected to each other in a linked list too.
+In suricata's source code, `ThreadVars` represents a system thread, it also has a thread module slots which is a linked list of `TmModule`, on the other side, `ThreadVars` is wrapped by `Thread`, then the `Threads` represent all of the threads created, meanwhile, `ThreadVars`s are connected to each other in a linked list.
 
 **Code flow**:
 
