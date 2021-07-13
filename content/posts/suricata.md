@@ -213,7 +213,7 @@ Firstly, "bypass" here means skipping the further steps[^2] during processing a 
 
 [^2]: "Suricata reads a packet, decodes it, checks it in the flow table...", refer to https://www.stamus-networks.com/blog/2016/09/28/suricata-bypass-feature
 
-Bypassing is implemented in two ways in suricata, local and capture, local means the bypassing logic exists in suricata's source code. Capture means the logic is provided by the various "captures"(AF_PACKET, NFQ, etc...) in linux kernel, to utilize it, suricata just call a function provided by kernel and declare the rule it want to bypass.
+Bypassing is implemented in two ways in suricata, local and capture, local means the bypassing logic exists in suricata's source code. Capture means the logic is provided by the various "captures"(AF\_PACKET, NFQ, etc...) in linux kernel, to utilize it, suricata just call a function provided by kernel and declare the rule it want to bypass.
 
 ### 3.7. More developer resources[^3][^4]
 
